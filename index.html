@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>ToDo</title>
+        <link rel="stylesheet" href="main.css">
+        <script src="main.js" defer></script> <!-- defer är för att scriptet ska läsas efter html:en, så att alla element finns. Annars problem -->
+    </head>
+
+
+    <body>
+        <!-- headline -->
+        <h1>todos</h1>
+
+        <!-- start of visual box, possibly a flexbox, some of which has flexboxes in them -->
+        <div id="visual-box">
+
+            
+            <!-- Textbox to enter todo-items -->
+            <form method="POST">
+                <input type="text" name="itemadd" placeholder="What needs to be done?">    
+            </form>
+            
+            
+            <!-- Here should the items on the list be added with js -->
+            
+            <div class="bottom-box">
+
+                <p># items left</p>
+                <nav>
+                    <ul>
+                        <li><a href="/index.html">All</a></li>
+                        <li><a href="/active.html">Active</a></li>
+                        <li><a href="/completed.html">Completed</a></li>
+                    </ul>
+                </nav>
+                <form method="DELETE" action="">
+                    <button>Clear Completed</button>
+                </form>
+                <!-- end of bottom bar to the square -->            
+            </div>
+        </div>
+        <!-- bottom bar to the square, added with js -->
+        <!-- end of visual box -->
+            
+            
+        <footer>
+            Double-click to edit a todo<br>Written by Ester<br>Part of Webutveckling Frontend
+        </footer>
+    </body>
+</html>
