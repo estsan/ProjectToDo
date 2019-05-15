@@ -1,1 +1,14 @@
 
+h1{ 
+    text-align: center;
+    font: 100px 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    color:rgba(175, 47, 47, 0.15);  
+}
+
+footer{
+text-align: center;
+color: #bfbfbf;
+font-size: 10px;
+}
+
+
