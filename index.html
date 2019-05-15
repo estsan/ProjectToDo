@@ -4,7 +4,7 @@
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Document</title>
-        <style src="main.css"></style>
+        <link rel="stylesheet" href="main.css">
         <script src="main.js" defer></script>
     </head>
 
@@ -12,17 +12,17 @@
         <header><h1>todos</h1></header>
 
         <div id="top">
-            <button><img src="arrow-down.png"></button>
+            <button id="check-all"><img src="pictures/arrow-down.png"></button>
             <input type="textbox" placeholder="What needs to be done">
         </div>
 
         <div id="big">
             <div id="list-item">
-                <input type="checkbox" id="check"><img src ="check.png" check">
+                <input type="checkbox" id="check"><label for="check"><img src ="pictures/check.png"></label>
                 <label>Item</label>
-                <button><img src="x.png"></button>
+                <button><img src="pictures/x.png"></button>
             </div>
-            
+
             <div id="bottom">
                 <label># items left</label>
                 <nav>
