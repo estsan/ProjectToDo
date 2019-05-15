@@ -3,50 +3,45 @@
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>ToDo</title>
-        <link rel="stylesheet" href="main.css">
-        <script src="main.js" defer></script> <!-- defer är för att scriptet ska läsas efter html:en, så att alla element finns. Annars problem -->
+        <title>Document</title>
+        <style src="main.css"></style>
+        <script src="main.js" defer></script>
     </head>
 
-
     <body>
-        <!-- headline -->
-        <h1>todos</h1>
+        <header><h1>todos</h1></header>
 
-        <!-- start of visual box, possibly a flexbox, some of which has flexboxes in them -->
-        <div id="visual-box">
+        <div id="top">
+            <button><img src="arrow-down.png"></button>
+            <input type="textbox" placeholder="What needs to be done">
+        </div>
 
+        <div id="big">
+            <div id="list-item">
+                <input type="checkbox" id="check"><img src ="check.png" check">
+                <label>Item</label>
+                <button><img src="x.png"></button>
+            </div>
             
-            <!-- Textbox to enter todo-items -->
-            <form method="POST">
-                <input type="text" name="itemadd" placeholder="What needs to be done?">    
-            </form>
-            
-            
-            <!-- Here should the items on the list be added with js -->
-            
-            <div class="bottom-box">
-
-                <p># items left</p>
+            <div id="bottom">
+                <label># items left</label>
                 <nav>
                     <ul>
-                        <li><a href="/index.html">All</a></li>
-                        <li><a href="/active.html">Active</a></li>
-                        <li><a href="/completed.html">Completed</a></li>
+                        <li><a href="index.html">All</a></li>
+                        <li><a href="active.html">Active</a></li>
+                        <li><a href="completed.html">Completed</a></li>
                     </ul>
                 </nav>
-                <form method="DELETE" action="">
-                    <button>Clear Completed</button>
-                </form>
-                <!-- end of bottom bar to the square -->            
+                <button>Clear Completed</button>
             </div>
         </div>
-        <!-- bottom bar to the square, added with js -->
-        <!-- end of visual box -->
-            
-            
+
         <footer>
-            Double-click to edit a todo<br>Written by Ester<br>Part of Webutveckling Frontend
+            <p>Double-click to edit a todo<br>
+                Written by Ester<br>
+                Part of Webutveckling Frontend
+            </p>
         </footer>
+
     </body>
 </html>
