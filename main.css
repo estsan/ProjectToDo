@@ -11,4 +11,16 @@ color: #bfbfbf;
 font-size: 10px;
 }
 
-
+#top
+{
+    text-align:center;
+    
+}
+#big{
+    text-align:center;
+    
+}
+#bottom{
+    text-align: left;
+    color: red;
+}
