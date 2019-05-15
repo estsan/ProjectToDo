@@ -1,0 +1,66 @@
+Headline: 
+HTML: <h1>
+CSS:styling
+JS: ingen funktion
+
+Footer:
+HTML:
+CSS: styling
+JS: ingen funktion 
+
+Textruta:
+HTML: <form> input:Textbox
+CSS: styling
+JS: ENTER skall lägga till (ligger i div list-Item)
+
+K1:
+HTML: Button
+JS: ändra när alla är ikryssade när man klickar, ändra styling på den, k2, lavel1 och states på items,label2,k4
+
+Cb:
+HTML: checkbox
+JS: Ändra k1, cb, label1, label2, ev.k4
+
+Nav första:
+HTML: nav
+JS: Visar allt existerande
+
+Nav andra:
+HTML: nav
+JS:Visar alla aktiva (inte markerade)
+
+Nav tredje:
+HTML: nav
+JS: Visar alla färdiga (markerade)
+
+K4:
+HTML: Button
+JS: dyker bara upp när något är markerat och tar bort dessa från listan
+
+K3:
+HTML:
+JS: Ta bort divLiten vid tryck, ändra färg vid hoover, label2 ev DivStor
+
+Label1:
+HTML: label
+JS: Dubbelklick: redigera??
+
+DivTop:
+HTML: div
+håller K1 och Textruta
+
+Div List-Item:
+HTML: div
+JS: ändra knapp 3 vid hoover
+Håller varje cb, label och k3
+
+DivBig:
+HTML: div
+JS: lägg till och ta bort vid behov lägg till och ta bort k1
+Håller allt under textrutan
+
+DivBottom
+HTML: div
+Håller label 2, alla nav, k4
+
+
