@@ -11,7 +11,16 @@ color: #bfbfbf;
 font-size: 10px;
 }
 
-
-img {
-    width: 15px;
+#top
+{
+    text-align:center;
+    
+}
+#big{
+    text-align:center;
+    
+}
+#bottom{
+    text-align: left;
+    color: red;
 }
