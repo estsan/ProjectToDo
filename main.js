@@ -8,6 +8,7 @@ let bottomRow = document.querySelector("#bottom");
 let checkAllImg = document.querySelector("#check-all-img");
 let checks = document.querySelector("#check-all");
 let clears = document.querySelector("#clear");
+let itemsLeft = document.querySelector("#jkl");
 
 // Denna är bara med tills CSSen är som den ska
 listItem.remove();
@@ -23,6 +24,16 @@ function AddBigBox(add) {
     else {
         bigBox.remove();
         checkAllImg.src = "pictures/arrow-light.png";
+    }
+}
+
+function UpdateItemsLeft() {
+    var number = allItems.length - doneItems.length;
+    if (number !== 1) {
+        itemsLeft.innerText = '#' + number + ' items left';
+    }
+    else {
+        itemsLeft.innerText = '#1 item left';
     }
 }
 
@@ -62,18 +73,23 @@ function AddItem(label) {
             img1.src = "pictures/circle.png";
             doneItems.splice(doneItems.indexOf(div), 1);
         }
-
+        UpdateItemsLeft();
     }
 
     button.onclick = event => {
         div.remove();
         allItems.splice(allItems.indexOf(div), 1);
+        if (doneItems.includes(div)) {
+            doneItems.splice(doneItems.indexOf(div), 1);
+        }
         if (allItems.length === 0) {
             AddBigBox(false);
         }
-    }
+        UpdateItemsLeft();
 
+    }
     allItems.push(div);
+    UpdateItemsLeft();
 }
 
 
