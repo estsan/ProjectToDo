@@ -1,19 +1,28 @@
-let items = new Array();
+// Instansvariabler
+let allItems = new Array();
+let doneItems = new Array();
 let bigBox = document.querySelector("#big")
 let addItem = document.querySelector("#text-add")
 let listItem = document.querySelector("#list-item");
 let bottomRow = document.querySelector("#bottom");
+let checkAllImg = document.querySelector("#check-all-img");
+let checks = document.querySelector("#check-all");
+let clears = document.querySelector("#clear");
 
+// Denna är bara med tills CSSen är som den ska
 listItem.remove();
 
-function BigBox(add) {
+// Funktioner
+function AddBigBox(add) {
     let place = document.querySelector("body");
     let foot = document.querySelector("footer");
     if (add) {
         place.insertBefore(bigBox, foot);
+        checkAllImg.src = "pictures/arrow-dark.png";
     }
     else {
         bigBox.remove();
+        checkAllImg.src = "pictures/arrow-light.png";
     }
 }
 
@@ -26,7 +35,7 @@ function AddItem(label) {
     var label1 = document.createElement("label");
     label1.for = "check";
     var img1 = document.createElement("img");
-    img1.src = "pictures/check.png";
+    img1.src = "pictures/circle.png";
     var label2 = document.createElement("label");
     var text = document.createTextNode(label);
     var button = document.createElement("button");
@@ -40,30 +49,56 @@ function AddItem(label) {
     label2.appendChild(text);
     div.appendChild(button);
     button.appendChild(img2);
-
+    
     bigBox.insertBefore(div, bottomRow);
+    
+    input.onclick = event => {
+        //event.preventDefault();
+        if ( RegExp('circle.png').test(img1.src) ) { //img1.src === "pictures/circle.png"){
+            img1.src = "pictures/circle-check.png";
+            doneItems.push(div);
+        }
+        else {
+            img1.src = "pictures/circle.png";
+            doneItems.splice(doneItems.indexOf(div), 1);
+        }
+
+    }
+
+    button.onclick = event => {
+        div.remove();
+        allItems.splice(allItems.indexOf(div), 1);
+        if (allItems.length === 0) {
+            AddBigBox(false);
+        }
+    }
+
+    allItems.push(div);
 }
 
 
+// Events
 addItem.addEventListener("keydown", function(e) {
     if (e.keyCode === 13) {
-        if (items.length === 0){
-            BigBox(true);
+        if (allItems.length === 0){
+            AddBigBox(true);
         }
         var item = addItem.value;
         AddItem(item);
+        addItem.value = "";
     }
 });
 
-let checks = document.querySelector("#check-all");
 checks.onclick = event => {
     event.preventDefault();
-    BigBox(true);
+    AddBigBox(true);
 };
 
-let clears = document.querySelector("#clear");
 clears.onclick = event => {
     event.preventDefault();
-    BigBox(false);
+    AddBigBox(false);
 };
-BigBox(false);
+
+
+// Snyggt byggt
+AddBigBox(false);
