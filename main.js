@@ -30,11 +30,23 @@ function AddBigBox(add) {
 function UpdateItemsLeft() {
     var number = allItems.length - doneItems.length;
     if (number !== 1) {
-        itemsLeft.innerText = '#' + number + ' items left';
+        itemsLeft.innerText = number + ' items left';
     }
     else {
-        itemsLeft.innerText = '#1 item left';
+        itemsLeft.innerText = '1 item left';
     }
+}
+
+function RemoveItem(div) {
+    allItems.splice(allItems.indexOf(div), 1);
+    if (doneItems.includes(div)) {
+        doneItems.splice(doneItems.indexOf(div), 1);
+    }
+    if (allItems.length === 0) {
+        AddBigBox(false);
+    }
+    div.remove();
+    UpdateItemsLeft();
 }
 
 function AddItem(label) {
@@ -77,21 +89,11 @@ function AddItem(label) {
     }
 
     button.onclick = event => {
-        div.remove();
-        allItems.splice(allItems.indexOf(div), 1);
-        if (doneItems.includes(div)) {
-            doneItems.splice(doneItems.indexOf(div), 1);
-        }
-        if (allItems.length === 0) {
-            AddBigBox(false);
-        }
-        UpdateItemsLeft();
-
+        RemoveItem(div);
     }
     allItems.push(div);
     UpdateItemsLeft();
 }
-
 
 // Events
 addItem.addEventListener("keydown", function(e) {
@@ -111,8 +113,16 @@ checks.onclick = event => {
 };
 
 clears.onclick = event => {
-    event.preventDefault();
-    AddBigBox(false);
+    var len = doneItems.length;
+    for (var i = 0; i < len; i++){
+        console.log(doneItems[0]);
+        RemoveItem(doneItems[0]);        
+    }
+
+    // doneItems.forEach(function(element){
+    //     console.log(element);
+    //     RemoveItem(element);
+    // });
 };
 
 
