@@ -68,6 +68,9 @@ function AddItem(label) {
     button.onclick = event => {
         div.remove();
         allItems.splice(allItems.indexOf(div), 1);
+        if (allItems.length === 0) {
+            AddBigBox(false);
+        }
     }
 
     allItems.push(div);
