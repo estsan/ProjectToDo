@@ -1,19 +1,27 @@
+// Instansvariabler
 let items = new Array();
 let bigBox = document.querySelector("#big")
 let addItem = document.querySelector("#text-add")
 let listItem = document.querySelector("#list-item");
 let bottomRow = document.querySelector("#bottom");
+let checkAllImg = document.querySelector("#check-all-img");
+let checks = document.querySelector("#check-all");
+let clears = document.querySelector("#clear");
 
+// Denna är bara med tills CSSen är som den ska
 listItem.remove();
 
-function BigBox(add) {
+// Funktioner
+function AddBigBox(add) {
     let place = document.querySelector("body");
     let foot = document.querySelector("footer");
     if (add) {
         place.insertBefore(bigBox, foot);
+        checkAllImg.src = "pictures/arrow-dark.png";
     }
     else {
         bigBox.remove();
+        checkAllImg.src = "pictures/arrow-light.png";
     }
 }
 
@@ -40,30 +48,40 @@ function AddItem(label) {
     label2.appendChild(text);
     div.appendChild(button);
     button.appendChild(img2);
-
+    
     bigBox.insertBefore(div, bottomRow);
+    
+    button.onclick = event => {
+        div.remove();
+        items.splice(items.indexOf(div), 1);
+    }
+
+    items.push(div);
 }
 
 
+// Events
 addItem.addEventListener("keydown", function(e) {
     if (e.keyCode === 13) {
         if (items.length === 0){
-            BigBox(true);
+            AddBigBox(true);
         }
         var item = addItem.value;
         AddItem(item);
+        addItem.value = "";
     }
 });
 
-let checks = document.querySelector("#check-all");
 checks.onclick = event => {
     event.preventDefault();
-    BigBox(true);
+    AddBigBox(true);
 };
 
-let clears = document.querySelector("#clear");
 clears.onclick = event => {
     event.preventDefault();
-    BigBox(false);
+    AddBigBox(false);
 };
-BigBox(false);
+
+
+// Snyggt byggt
+AddBigBox(false);
