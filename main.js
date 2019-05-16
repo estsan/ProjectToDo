@@ -1,5 +1,6 @@
 // Instansvariabler
-let items = new Array();
+let allItems = new Array();
+let doneItems = new Array();
 let bigBox = document.querySelector("#big")
 let addItem = document.querySelector("#text-add")
 let listItem = document.querySelector("#list-item");
@@ -34,7 +35,7 @@ function AddItem(label) {
     var label1 = document.createElement("label");
     label1.for = "check";
     var img1 = document.createElement("img");
-    img1.src = "pictures/check.png";
+    img1.src = "pictures/circle.png";
     var label2 = document.createElement("label");
     var text = document.createTextNode(label);
     var button = document.createElement("button");
@@ -51,19 +52,32 @@ function AddItem(label) {
     
     bigBox.insertBefore(div, bottomRow);
     
-    button.onclick = event => {
-        div.remove();
-        items.splice(items.indexOf(div), 1);
+    input.onclick = event => {
+        //event.preventDefault();
+        if ( RegExp('circle.png').test(img1.src) ) { //img1.src === "pictures/circle.png"){
+            img1.src = "pictures/circle-check.png";
+            doneItems.push(div);
+        }
+        else {
+            img1.src = "pictures/circle.png";
+            doneItems.splice(doneItems.indexOf(div), 1);
+        }
+
     }
 
-    items.push(div);
+    button.onclick = event => {
+        div.remove();
+        allItems.splice(allItems.indexOf(div), 1);
+    }
+
+    allItems.push(div);
 }
 
 
 // Events
 addItem.addEventListener("keydown", function(e) {
     if (e.keyCode === 13) {
-        if (items.length === 0){
+        if (allItems.length === 0){
             AddBigBox(true);
         }
         var item = addItem.value;
