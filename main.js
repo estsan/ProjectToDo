@@ -9,6 +9,7 @@ let checkAllImg = document.querySelector("#check-all-img");
 let checks = document.querySelector("#check-all");
 let clears = document.querySelector("#clear");
 let itemsLeft = document.querySelector("#jkl");
+var i = 0;
 
 // Denna är bara med tills CSSen är som den ska
 listItem.remove();
@@ -54,9 +55,12 @@ function AddItem(label) {
     div.id = "list-item";
     var input = document.createElement("input");
     input.type = "checkbox";
-    input.id = "check";
+    input.id = 'check' + i;
+    console.log(input.attributes);
+
     var label1 = document.createElement("label");
-    label1.for = "check";
+    label1.setAttribute("for", 'check' + i);
+    console.log(label1.attributes);
     var img1 = document.createElement("img");
     img1.src = "pictures/circle.png";
     var label2 = document.createElement("label");
@@ -93,6 +97,7 @@ function AddItem(label) {
     }
     allItems.push(div);
     UpdateItemsLeft();
+    i++;
 }
 
 // Events
