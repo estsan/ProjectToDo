@@ -20,12 +20,10 @@ function AddBigBox(add) {
     let foot = document.querySelector("footer");
     if (add) {
         place.insertBefore(bigBox, foot);
-        checkAllImg.src = "pictures/arrow-dark.png";
     }
     else {
         bigBox.remove();
-        checkAllImg.src = "pictures/arrow-light.png";
-    }
+   }
 }
 
 function UpdateItemsLeft() {
@@ -36,6 +34,7 @@ function UpdateItemsLeft() {
     else {
         itemsLeft.innerText = '1 item left';
     }
+    TopRowButtonChange();
 }
 
 function RemoveItem(div) {
@@ -98,6 +97,16 @@ function AddItem(label) {
     allItems.push(div);
     UpdateItemsLeft();
     i++;
+}
+
+function TopRowButtonChange() {
+    var number = allItems.length - doneItems.length;
+    if ( number === 0 ){
+        checkAllImg.src = "pictures/arrow-dark.png";
+    }
+    else{
+        checkAllImg.src = "pictures/arrow-light.png";
+    }
 }
 
 // Events
