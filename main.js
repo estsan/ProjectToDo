@@ -5,7 +5,7 @@ let bigBox = document.querySelector("#big")
 let addItem = document.querySelector("#text-add")
 let listItem = document.querySelector("#list-item");
 let bottomRow = document.querySelector("#bottom");
-let checkAllImg = document.querySelector("#check-all-img");
+let checkAll = document.querySelector("#check-all-img");
 let checks = document.querySelector("#check-all");
 let clears = document.querySelector("#clear");
 let itemsLeft = document.querySelector("#jkl");
@@ -78,19 +78,11 @@ function AddItem(label) {
     
     bigBox.insertBefore(div, bottomRow);
     
-    input.onclick = event => {
-        //event.preventDefault();
-        if ( RegExp('circle.png').test(img1.src) ) { //img1.src === "pictures/circle.png"){
-            img1.src = "pictures/circle-check.png";
-            doneItems.push(div);
-        }
-        else {
-            img1.src = "pictures/circle.png";
-            doneItems.splice(doneItems.indexOf(div), 1);
-        }
-        UpdateItemsLeft();
-    }
-
+    input.onclick = () => {
+        event.preventDefault();
+        ChangeBetweenDoneAndNotDone(div);
+    };
+    
     button.onclick = event => {
         RemoveItem(div);
     }
@@ -99,13 +91,27 @@ function AddItem(label) {
     i++;
 }
 
+function ChangeBetweenDoneAndNotDone(div) {
+    img1 = div.children[1].children[0];
+    if (!doneItems.includes(div)) {
+        img1.src = "pictures/circle-check.png";
+        doneItems.push(div);
+        UpdateItemsLeft();
+    }
+    else {
+        img1.src = "pictures/circle.png";
+        doneItems.splice(doneItems.indexOf(div), 1);
+        UpdateItemsLeft();
+    }
+}
+
 function TopRowButtonChange() {
     var number = allItems.length - doneItems.length;
     if ( number === 0 ){
-        checkAllImg.src = "pictures/arrow-dark.png";
+        checkAll.src = "pictures/arrow-dark.png";
     }
     else{
-        checkAllImg.src = "pictures/arrow-light.png";
+        checkAll.src = "pictures/arrow-light.png";
     }
 }
 
@@ -121,9 +127,22 @@ addItem.addEventListener("keydown", function(e) {
     }
 });
 
-checks.onclick = event => {
+checkAll.onclick = event => {
     event.preventDefault();
-    AddBigBox(true);
+    var len = allItems.length;
+
+
+    var num = allItems.length - doneItems.length;
+    for (var i = 0; i < len; i++){
+        if (num === 0) {
+            ChangeBetweenDoneAndNotDone(allItems[i]);
+        }
+        else {
+            if (!doneItems.includes(allItems[i])){
+            ChangeBetweenDoneAndNotDone(allItems[i]);
+            }
+        }
+    }
 };
 
 clears.onclick = event => {
@@ -132,11 +151,6 @@ clears.onclick = event => {
         console.log(doneItems[0]);
         RemoveItem(doneItems[0]);        
     }
-
-    // doneItems.forEach(function(element){
-    //     console.log(element);
-    //     RemoveItem(element);
-    // });
 };
 
 
