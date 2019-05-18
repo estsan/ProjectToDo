@@ -117,13 +117,15 @@ function TopRowButtonChange() {
 
 // Events
 addItem.addEventListener("keydown", function(e) {
-    if (e.keyCode === 13) {
-        if (allItems.length === 0){
-            AddBigBox(true);
+    var item = addItem.value;
+    if (item !== ""){
+        if (e.keyCode === 13) {
+            if (allItems.length === 0){
+                AddBigBox(true);
+            }
+            AddItem(item);
+            addItem.value = "";
         }
-        var item = addItem.value;
-        AddItem(item);
-        addItem.value = "";
     }
 });
 
