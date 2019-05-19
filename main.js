@@ -2,7 +2,7 @@
 let allItems = new Array();
 let doneItems = new Array();
 let bigBox = document.querySelector("#big")
-let addItem = document.querySelector("#text-add")
+let addItem = document.querySelector("#INPUT")
 let listItem = document.querySelector("#list-item");
 let bottomRow = document.querySelector("#bottom");
 let checkAll = document.querySelector("#check-all-img");
