@@ -1,14 +1,15 @@
 // Instansvariabler
 let allItems = new Array();
+
 let doneItems = new Array();
 let bigBox = document.querySelector("#big")
-let addItem = document.querySelector("#INPUT")
+let addItem = document.querySelector("#text-add")
 let listItem = document.querySelector("#list-item");
 let bottomRow = document.querySelector("#bottom");
 let checkAll = document.querySelector("#check-all-img");
 let checks = document.querySelector("#check-all");
 let clears = document.querySelector("#clear");
-let itemsLeft = document.querySelector("#jkl");
+let itemsLeft = document.querySelector("#items-left");
 var i = 0;
 
 // Denna är bara med tills CSSen är som den ska
@@ -23,6 +24,7 @@ function AddBigBox(add) {
     }
     else {
         bigBox.remove();
+        checkAll.src = "pictures/arrow-light.png";
    }
 }
 
@@ -38,28 +40,29 @@ function UpdateItemsLeft() {
 }
 
 function RemoveItem(div) {
-    allItems.splice(allItems.indexOf(div), 1);
+    allItems.splice(allItems.indexOf(div), 1);  
+    sessionStorage.removeItem(div.children[1].getAttribute("for"));
     if (doneItems.includes(div)) {
         doneItems.splice(doneItems.indexOf(div), 1);
     }
+
+    div.remove();
+    UpdateItemsLeft();
     if (allItems.length === 0) {
         AddBigBox(false);
     }
-    div.remove();
-    UpdateItemsLeft();
 }
 
 function AddItem(label) {
+
     var div = document.createElement("div");
     div.id = "list-item";
     var input = document.createElement("input");
     input.type = "checkbox";
     input.id = 'check' + i;
-    console.log(input.attributes);
 
     var label1 = document.createElement("label");
     label1.setAttribute("for", 'check' + i);
-    console.log(label1.attributes);
     var img1 = document.createElement("img");
     img1.src = "pictures/circle.png";
     var label2 = document.createElement("label");
@@ -67,7 +70,7 @@ function AddItem(label) {
     var button = document.createElement("button");
     var img2 = document.createElement("img");
     img2.src = "pictures/x.png";
-
+    
     div.appendChild(input);
     div.appendChild(label1);
     label1.appendChild(img1);
@@ -88,7 +91,12 @@ function AddItem(label) {
     }
     allItems.push(div);
     UpdateItemsLeft();
+
+    var key = label1.getAttribute("for");
+    sessionStorage.setItem(key, label);
+    
     i++;
+
 }
 
 function ChangeBetweenDoneAndNotDone(div) {
@@ -116,11 +124,13 @@ function TopRowButtonChange() {
 }
 
 // Events
+
+
 addItem.addEventListener("keydown", function(e) {
     var item = addItem.value;
     if (item !== ""){
         if (e.keyCode === 13) {
-            if (allItems.length === 0){
+            if (document.getElementById("big") === null){
                 AddBigBox(true);
             }
             AddItem(item);
@@ -150,7 +160,6 @@ checkAll.onclick = event => {
 clears.onclick = event => {
     var len = doneItems.length;
     for (var i = 0; i < len; i++){
-        console.log(doneItems[0]);
         RemoveItem(doneItems[0]);        
     }
 };
@@ -158,3 +167,28 @@ clears.onclick = event => {
 
 // Snyggt byggt
 AddBigBox(false);
+
+if (sessionStorage.length !== 0){
+    AddBigBox(true);
+    console.log(sessionStorage);
+    var tempLables = new Array();
+    for (var j = 0; j < sessionStorage.length; j++){
+        var keyName = sessionStorage.key(j);
+        var valueName = sessionStorage.getItem(keyName);
+        tempLables[j] = valueName;
+    }
+    sessionStorage.clear();
+    console.log(sessionStorage);
+    console.log(tempLables);
+    
+    for (var j = 0; j < tempLables.length; j++) {
+        AddItem(tempLables[j]);
+    }
+    console.log(sessionStorage);
+}
+
+
+
+// window.addEventListener('hashchange', function() {
+//     console.log('The hash has changed!')
+// }, false);
