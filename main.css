@@ -102,7 +102,7 @@ button{
     -moz-osx-font-smoothing: grayscale;
     float:right;
 }
-#jkl{
+#items-left{
     float: left;
     text-align: left;
     color: #777777;
@@ -144,7 +144,7 @@ li {
     border-radius: 2px;
   }
 
-#INPUT {
+#text-add {
     padding: 16px 16px 16px 60px;
     bottom: 0px;
     color: rgb(77, 77, 77);
