@@ -1,21 +1,21 @@
 // Instansvariabler
 let allItems = new Array();
-
 let doneItems = new Array();
 let bigBox = document.querySelector("#big")
-let addItem = document.querySelector("#text-add")
+let addItemTextbox = document.querySelector("#text-add")
 let listItem = document.querySelector("#list-item");
 let bottomRow = document.querySelector("#bottom");
 let checkAll = document.querySelector("#check-all-img");
-let checks = document.querySelector("#check-all");
-let clears = document.querySelector("#clear");
-let itemsLeft = document.querySelector("#items-left");
+let clearCompleted = document.querySelector("#clear");
+let itemsLeftLabel = document.querySelector("#items-left");
 var i = 0;
 
 // Denna är bara med tills CSSen är som den ska
 listItem.remove();
 
 // Funktioner
+
+// Adding or removing the lower part of the visual box
 function AddBigBox(add) {
     let place = document.querySelector("body");
     let foot = document.querySelector("footer");
@@ -28,13 +28,14 @@ function AddBigBox(add) {
    }
 }
 
+// Update number on label telling how many items are left
 function UpdateItemsLeft() {
     var number = allItems.length - doneItems.length;
     if (number !== 1) {
-        itemsLeft.innerText = number + ' items left';
+        itemsLeftLabel.innerText = number + ' items left';
     }
     else {
-        itemsLeft.innerText = '1 item left';
+        itemsLeftLabel.innerText = '1 item left';
     }
     TopRowButtonChange();
 }
@@ -54,7 +55,6 @@ function RemoveItem(div) {
 }
 
 function AddItem(label) {
-
     var div = document.createElement("div");
     div.id = "list-item";
     var input = document.createElement("input");
@@ -96,7 +96,6 @@ function AddItem(label) {
     sessionStorage.setItem(key, label);
     
     i++;
-
 }
 
 function ChangeBetweenDoneAndNotDone(div) {
@@ -113,6 +112,7 @@ function ChangeBetweenDoneAndNotDone(div) {
     }
 }
 
+// Change the appearence on the bottom next to the textbox when all tasks are marked
 function TopRowButtonChange() {
     var number = allItems.length - doneItems.length;
     if ( number === 0 ){
@@ -126,15 +126,15 @@ function TopRowButtonChange() {
 // Events
 
 
-addItem.addEventListener("keydown", function(e) {
-    var item = addItem.value;
+addItemTextbox.addEventListener("keydown", function(e) {
+    var item = addItemTextbox.value;
     if (item !== ""){
         if (e.keyCode === 13) {
             if (document.getElementById("big") === null){
                 AddBigBox(true);
             }
             AddItem(item);
-            addItem.value = "";
+            addItemTextbox.value = "";
         }
     }
 });
@@ -142,7 +142,6 @@ addItem.addEventListener("keydown", function(e) {
 checkAll.onclick = event => {
     event.preventDefault();
     var len = allItems.length;
-
 
     var num = allItems.length - doneItems.length;
     for (var i = 0; i < len; i++){
@@ -157,15 +156,15 @@ checkAll.onclick = event => {
     }
 };
 
-clears.onclick = event => {
+clearCompleted.onclick = event => {
     var len = doneItems.length;
     for (var i = 0; i < len; i++){
         RemoveItem(doneItems[0]);        
     }
 };
 
+// Make the page look as wanted when we start
 
-// Snyggt byggt
 AddBigBox(false);
 
 if (sessionStorage.length !== 0){
