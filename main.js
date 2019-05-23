@@ -1,6 +1,7 @@
 // Instansvariabler
 let allItems = new Array();
 let doneItems = new Array();
+let activeItems = new Array();
 let bigBox = document.querySelector("#big")
 let addItemTextbox = document.querySelector("#text-add")
 let listItem = document.querySelector("#list-item");
@@ -30,7 +31,7 @@ function AddBigBox(add) {
 
 // Update number on label telling how many items are left
 function UpdateItemsLeft() {
-    var number = allItems.length - doneItems.length;
+    var number = activeItems.length;
     if (number !== 1) {
         itemsLeftLabel.innerText = number + ' items left';
     }
@@ -46,6 +47,9 @@ function RemoveItem(div) {
     if (doneItems.includes(div)) {
         doneItems.splice(doneItems.indexOf(div), 1);
     }
+    else {
+        activeItems.splice(activeItems.indexOf(div), 1);
+    }
 
     div.remove();
     UpdateItemsLeft();
@@ -54,7 +58,7 @@ function RemoveItem(div) {
     }
 }
 
-function AddItem(label) {
+function AddItem(thisLabel, active) {
     var div = document.createElement("div");
     div.id = "list-item";
     var input = document.createElement("input");
@@ -64,9 +68,10 @@ function AddItem(label) {
     var label1 = document.createElement("label");
     label1.setAttribute("for", 'check' + i);
     var img1 = document.createElement("img");
-    img1.src = "pictures/circle.png";
+    if (active) { img1.src = "pictures/circle.png"; }
+    else { img1.src = "pictures/circle-check.png"; }
     var label2 = document.createElement("label");
-    var text = document.createTextNode(label);
+    var text = document.createTextNode(thisLabel);
     var button = document.createElement("button");
     var img2 = document.createElement("img");
     img2.src = "pictures/x.png";
@@ -90,31 +95,48 @@ function AddItem(label) {
         RemoveItem(div);
     }
     allItems.push(div);
+    if (active) { activeItems.push(div); }
+    else { doneItems.push(div); }
     UpdateItemsLeft();
 
     var key = label1.getAttribute("for");
-    sessionStorage.setItem(key, label);
+    if (active) { var value = [ 'y', thisLabel]; }
+    else {var value = ['n', thisLabel]; }
+    sessionStorage.setItem(key, JSON.stringify(value));
+
     
     i++;
 }
 
 function ChangeBetweenDoneAndNotDone(div) {
     img1 = div.children[1].children[0];
-    if (!doneItems.includes(div)) {
+    if (activeItems.includes(div)) {
         img1.src = "pictures/circle-check.png";
         doneItems.push(div);
+        activeItems.splice(activeItems.indexOf(div), 1);
         UpdateItemsLeft();
+        var key = div.children[1].getAttribute("for");
+        var value = JSON.parse(sessionStorage.getItem(key));
+        sessionStorage.removeItem(key);
+        value[0] = 'n';
+        sessionStorage.setItem(key, JSON.stringify(value));
     }
     else {
         img1.src = "pictures/circle.png";
+        activeItems.push(div);
         doneItems.splice(doneItems.indexOf(div), 1);
         UpdateItemsLeft();
+        var key = div.children[1].getAttribute("for");
+        var value = JSON.parse(sessionStorage.getItem(key));
+        sessionStorage.removeItem(key);
+        value[0] = 'y';
+        sessionStorage.setItem(key, JSON.stringify(value));
     }
 }
 
-// Change the appearence on the bottom next to the textbox when all tasks are marked
+// Change the appearence on the button next to the textbox when all tasks are marked
 function TopRowButtonChange() {
-    var number = allItems.length - doneItems.length;
+    var number = activeItems.length;
     if ( number === 0 ){
         checkAll.src = "pictures/arrow-dark.png";
     }
@@ -125,6 +147,11 @@ function TopRowButtonChange() {
 
 // Events
 
+function locationHashChanged() { 
+    if (location.hash === '#all') { 
+      console.log("You're visiting a cool feature!"); 
+    } 
+  } 
 
 addItemTextbox.addEventListener("keydown", function(e) {
     var item = addItemTextbox.value;
@@ -133,7 +160,7 @@ addItemTextbox.addEventListener("keydown", function(e) {
             if (document.getElementById("big") === null){
                 AddBigBox(true);
             }
-            AddItem(item);
+            AddItem(item, true);
             addItemTextbox.value = "";
         }
     }
@@ -141,15 +168,14 @@ addItemTextbox.addEventListener("keydown", function(e) {
 
 checkAll.onclick = event => {
     event.preventDefault();
-    var len = allItems.length;
-
-    var num = allItems.length - doneItems.length;
-    for (var i = 0; i < len; i++){
-        if (num === 0) {
+    var all = allItems.length;
+    var active = activeItems.length;
+    for (var i = 0; i < all; i++){
+        if (active === 0) {
             ChangeBetweenDoneAndNotDone(allItems[i]);
         }
         else {
-            if (!doneItems.includes(allItems[i])){
+            if (activeItems.includes(allItems[i])){
             ChangeBetweenDoneAndNotDone(allItems[i]);
             }
         }
@@ -169,7 +195,6 @@ AddBigBox(false);
 
 if (sessionStorage.length !== 0){
     AddBigBox(true);
-    console.log(sessionStorage);
     var tempLables = new Array();
     for (var j = 0; j < sessionStorage.length; j++){
         var keyName = sessionStorage.key(j);
@@ -177,11 +202,13 @@ if (sessionStorage.length !== 0){
         tempLables[j] = valueName;
     }
     sessionStorage.clear();
-    console.log(sessionStorage);
-    console.log(tempLables);
     
     for (var j = 0; j < tempLables.length; j++) {
-        AddItem(tempLables[j]);
+        var value = JSON.parse(tempLables[j]);
+
+        var active = value[0] === 'y';
+        var label = value[1];
+        AddItem(label, active);
     }
     console.log(sessionStorage);
 }
