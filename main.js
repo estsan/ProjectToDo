@@ -108,8 +108,25 @@ function AddItemToContext(thisLabel, active) {
     }
 
     label2.addEventListener("dblclick", function() {
-        console.log('doubleclick happened');
-    })
+        console.log('Whoaaa we\'re halfway there');
+        var textbox = document.createElement("input");
+        textbox.setAttribute("type", "textbox");
+        textbox.value = thisLabel;
+        label2.remove();
+        div.insertBefore(textbox, button);
+        textbox.addEventListener("keydown", function(e) {
+            var item = textbox.value;
+            if (item !== ""){
+                if (e.keyCode === 13) {
+                    div.remove();
+                    AddItemToContext(item, active);
+                }
+            }
+            else {
+                div.remove();
+            }
+        });
+    });
 
     allItems.push(div);
     if (active) { activeItems.push(div); }
@@ -176,8 +193,8 @@ function locationHashChanged() {
 
 addItemTextbox.addEventListener("keydown", function(e) {
     var item = addItemTextbox.value;
-    if (item !== ""){
-        if (e.keyCode === 13) {
+    if (e.keyCode === 13){
+        if (item !== "") {
             if (document.getElementById("big") === null){
                 AddBigBox(true);
             }
