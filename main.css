@@ -39,7 +39,6 @@ header{
 }
 #big{
     position: relative;
-    
     z-index: 2;
     border-top: 1px solid #e6e6e6;
 }
@@ -64,9 +63,7 @@ header{
     border: solid #e6e6e6 2px;
     height:58.67px;
     display:block;
-    background: #fff;
-     
-    
+    background: #fff;     
 }
 
 footer{
@@ -161,8 +158,10 @@ li {
   opacity:0.5;
 }
 #text-add {
+    
     font-style:italic;
-    opacity:0.5;
+    font-size: 25px;
+    opacity:0.25;
     padding: 16px 16px 16px 60px;
     bottom: 0px;
     color: rgb(77, 77, 77);
@@ -178,7 +177,7 @@ li {
     caret-color: rgb(77, 77, 77);
     background: rgba(0, 0, 0, 0.003) none repeat scroll 0% 0% / auto padding-box border-box;
     border: none;
-    font: normal normal 300 normal 24px / 33.6px "Helvetica Neue", Helvetica, Arial, sans-serif;
+    
     outline: rgb(77, 77, 77) none 0px;
  
 }/*#INPUT to the TODO textbox*/
