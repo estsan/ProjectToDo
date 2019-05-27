@@ -112,12 +112,23 @@ function AddItemToContext(thisLabel, active) {
         textbox.setAttribute("type", "textbox");
         textbox.value = thisLabel + '\n';
         label2.replaceWith(textbox);
+
+
+
         textbox.addEventListener("keydown", function(e) {
             var item = textbox.value;
             if (e.keyCode === 13){
                 if (item !== "") {
                     textbox.replaceWith(label2);
                     label2.innerHTML = item;
+
+                    
+                    var key = label1.getAttribute("for");
+                    sessionStorage.removeItem(key);
+                    if (active) { var value = [ 'y', item]; }
+                    else {var value = ['n', item]; }
+                    sessionStorage.setItem(key, JSON.stringify(value));
+                    // Update sessionStorage
                 }
                 else {
                     RemoveItem();
