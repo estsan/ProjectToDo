@@ -66,6 +66,7 @@ function AddItemToContext(thisLabel, active) {
     input.id = 'check' + i;
     var label1 = document.createElement("label");
     label1.setAttribute("for", 'check' + i);
+    label1.setAttribute("class", "invisiblebox")
     var img1 = document.createElement("img");
     if (active) { img1.src = "pictures/circle.png"; }
     else { img1.src = "pictures/circle-check.png"; }
