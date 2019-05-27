@@ -64,7 +64,6 @@ img {
     width:30px;
        
 }
-
 footer{
     margin: 65px auto 0;
     color: #bfbfbf;
@@ -113,8 +112,10 @@ button{
     position: relative;
     line-height: 20px;
     text-decoration: none;
-    cursor: pointer;}
-ul {
+    cursor: pointer;
+}
+
+    ul {
     display: block;
     list-style-type: disc;
     margin-block-start: 1em;
@@ -178,4 +179,7 @@ li {
 #check-all{
   float:left;  
   width: 20px;
+}
+#ester{
+    width:100px;
 }
