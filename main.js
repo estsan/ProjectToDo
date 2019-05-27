@@ -66,6 +66,7 @@ function AddItemToContext(thisLabel, active) {
     input.id = 'check' + i;
     var label1 = document.createElement("label");
     label1.setAttribute("for", 'check' + i);
+    label1.setAttribute("class", "invisiblebox")
     var img1 = document.createElement("img");
     if (active) { img1.src = "pictures/circle.png"; }
     else { img1.src = "pictures/circle-check.png"; }
@@ -108,22 +109,31 @@ function AddItemToContext(thisLabel, active) {
     }
 
     label2.addEventListener("dblclick", function() {
-        console.log('Whoaaa we\'re halfway there');
         var textbox = document.createElement("input");
         textbox.setAttribute("type", "textbox");
-        textbox.value = thisLabel;
-        label2.remove();
-        div.insertBefore(textbox, button);
+        textbox.value = thisLabel + '\n';
+        label2.replaceWith(textbox);
+
+
+
         textbox.addEventListener("keydown", function(e) {
             var item = textbox.value;
-            if (item !== ""){
-                if (e.keyCode === 13) {
-                    div.remove();
-                    AddItemToContext(item, active);
+            if (e.keyCode === 13){
+                if (item !== "") {
+                    textbox.replaceWith(label2);
+                    label2.innerHTML = item;
+
+                    
+                    var key = label1.getAttribute("for");
+                    sessionStorage.removeItem(key);
+                    if (active) { var value = [ 'y', item]; }
+                    else {var value = ['n', item]; }
+                    sessionStorage.setItem(key, JSON.stringify(value));
+                    // Update sessionStorage
                 }
-            }
-            else {
-                div.remove();
+                else {
+                    RemoveItem();
+                }
             }
         });
     });
