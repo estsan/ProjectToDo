@@ -19,7 +19,7 @@ body {
     position: relative;
     box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.2), 0 25px 50px 0 rgba(0, 0, 0, 0.1);
 
-}
+}/*includes everything, we can call it a wrapper*/
 
 .main h1{ 
     position: absolute;
@@ -30,19 +30,18 @@ body {
     text-align: center;
     color: rgba(175, 47, 47, 0.15);
     
-}
+}/*the todo header text of the page*/
 
 header{
-    
     display: block;
     height:65px;
     width:550px;
-}
+}/*this is the box that holds the arrow selector + textbox */
+
 #big{
     position: relative;
     z-index: 2;
     box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.2), 0 25px 50px 0 rgba(0, 0, 0, 0.1);
-
 }
 
 #bottom{
@@ -50,13 +49,13 @@ header{
     padding: 10px 15px;
     height: 15px;
     text-align: center;
-    
     background: #fff;
     display:flex;
     flex-direction:row;
     align-items: center;
     box-shadow: 0 1px 1px rgba(0, 0, 0, 0.2), 0 8px 0 -3px #f6f6f6, 0 9px 1px -3px rgba(0, 0, 0, 0.2), 0 16px 0 -6px #f6f6f6, 0 17px 2px -6px rgba(0, 0, 0, 0.2);
-}
+}/*bottom div that holds: item counter, clear completed and the 3 li´s*/
+
 #list-item{
     position: relative;
     font-size: 24px;
@@ -64,7 +63,7 @@ header{
     height:58.67px;
     display:block;
     background: #fff;     
-}
+}/*The whole box which is created for every value that we add in textbox*/
 
 footer{
     margin: 65px auto 0;
@@ -72,9 +71,10 @@ footer{
     font-size: 10px;
     text-shadow: 0 1px 0 rgba(255, 255, 255, 0.5);
     text-align: center;
-}
+}/*the text at the end of the page*/
 
 button{
+    border:none;
     margin: 0;
     padding: 0;
     border: 0;
@@ -89,19 +89,22 @@ button{
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     float:right;
-}
+}/*for all buttons in general*/
+
 #items-left{
     float: left;
     text-align: left;
     color: #777777;
     flex:1;
-}
+}/*item counter label, in bottom div */
+
 #all{
     justify-content: space-between;
     flex:2;
     position:relative;
     height:70px;
-}
+} /*a div that holds the 3 li´s inside in bottom div*/
+
 #clear{
     float: right;
     position: relative;
@@ -109,7 +112,8 @@ button{
     text-decoration: none;
     cursor: pointer;
     flex:1;
-}
+}/*Clear completed button*/
+
 #clear:hover {
     text-decoration: underline;
   }
@@ -128,7 +132,7 @@ ul {
 li {
     float:left;
     position: relative;
-   display:block;
+    display:block;
     color: #777777;
     text-align: center;
     padding:12px;
@@ -147,16 +151,25 @@ li {
     padding-right: 10px;
     border-radius: 2px;
   }
+  /*the 3 li´s in bottom div*/
 
+#check-all{
+    float:left;
+    border:none;
+    outline:none;
+}/*the button behind arrow selecting all picture*/
 
 #check-all-img{
-
+    float:left;
     font-size: 22px;
-    padding: 10px 27px 10px 27px;
-    width: 40px;
-  height:40px;
+    position: relative;
+    padding: 10px 10px 10px 10px;
+    width: 30px;
+  height:30px;
+  margin:5px;
   opacity:0.5;
-}
+}/*Picture arrow of selecting all items*/
+
 #text-add {
     
     font-style:italic;
@@ -167,7 +180,7 @@ li {
     color: rgb(77, 77, 77);
     height: 30px;
     position: relative;
-    text-align: center;
+    text-align: left;
     right: 0px;
     text-decoration: none solid rgb(77, 77, 77);
     top: 0px;
@@ -177,7 +190,6 @@ li {
     caret-color: rgb(77, 77, 77);
     background: rgba(0, 0, 0, 0.003) none repeat scroll 0% 0% / auto padding-box border-box;
     border: none;
-    
     outline: rgb(77, 77, 77) none 0px;
  
 }/*#INPUT to the TODO textbox*/
@@ -199,7 +211,7 @@ li {
         opacity:0.5;
         position: relative;
            
-}
+}/*the ring picture to click on to mark/done */
 
 .ester{
   display:none;
@@ -214,11 +226,14 @@ li {
     color: #cc9a9a;
     margin-bottom: 11px;
     transition: color 0.2s ease-out;
-}
+}/*the button that gets clicked when we click on the X picture*/
+
 .delete{
     width:15px;
     height:15px;
-}
+    opacity:0.5;
+}/*the X pic that we click on to delete item*/
+
 #list-item:hover .ester{
     display:block;
 }
@@ -226,4 +241,4 @@ li {
     font-size:24px;
     border:none;
     outline:none;
-}
+}/*when we double click to edit something existing*/
