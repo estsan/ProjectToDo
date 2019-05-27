@@ -71,6 +71,7 @@ function AddItemToContext(thisLabel, active) {
     var img1 = document.createElement("img");
     if (active) { img1.src = "pictures/circle.png"; }
     else { img1.src = "pictures/circle-check.png"; }
+    img1.setAttribute("class","ring")
     var label2 = document.createElement("label");
     label2.setAttribute("class", "item-label");
     var text = document.createTextNode(thisLabel);

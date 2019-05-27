@@ -15,15 +15,11 @@ body {
 .main
 {
     background: #fff;
-    margin: 130px 0 40px 0;
+    margin: 140px 0 0px 0;
     position: relative;
     box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.2), 0 25px 50px 0 rgba(0, 0, 0, 0.1);
 }
-header{
-    display: block;
-    height:65px;
-    width:550px;
-}
+
 .main h1{ 
     position: absolute;
     top: -155px;
@@ -32,14 +28,18 @@ header{
     font-weight: 100;
     text-align: center;
     color: rgba(175, 47, 47, 0.15);
-    -webkit-text-rendering: optimizeLegibility;
-    -moz-text-rendering: optimizeLegibility;
-    text-rendering: optimizeLegibility;
-   
+    
 }
 
+header{
+    
+    display: block;
+    height:65px;
+    width:550px;
+}
 #big{
     position: relative;
+    
     z-index: 2;
     border-top: 1px solid #e6e6e6;
 }
@@ -69,10 +69,6 @@ header{
     
 }
 
-img {
-    width:30px;
-       
-}
 footer{
     margin: 65px auto 0;
     color: #bfbfbf;
@@ -156,7 +152,17 @@ li {
   }
 
 
+#check-all-img{
+
+    font-size: 22px;
+    padding: 10px 27px 10px 27px;
+    width: 40px;
+  height:40px;
+  opacity:0.5;
+}
 #text-add {
+    font-style:italic;
+    opacity:0.5;
     padding: 16px 16px 16px 60px;
     bottom: 0px;
     color: rgb(77, 77, 77);
@@ -187,14 +193,15 @@ li {
         height:40px;
 
 }
-.checkpic{
-    height:40px;
+.ring{
     
+        width:40px;
+        height:40px;
+        opacity:0.5;
+        position: relative;
+           
 }
-#check-all{
-  float:left;  
-  width: 20px;
-}
+
 .ester{
   display:none;
     position: absolute;
