@@ -72,6 +72,7 @@ function AddItemToContext(thisLabel, active) {
     var label2 = document.createElement("label");
     var text = document.createTextNode(thisLabel);
     var button = document.createElement("button");
+    button.setAttribute("class", "ester");
     var img2 = document.createElement("img");
     img2.src = "pictures/x.png";
     
@@ -106,7 +107,7 @@ function AddItemToContext(thisLabel, active) {
         RemoveItem(div);
     }
 
-    label2.addEventListener("click", function() {
+    label2.addEventListener("dblclick", function() {
         console.log('doubleclick happened');
     })
 
