@@ -210,6 +210,7 @@ li {
         height:40px;
         opacity:0.5;
         position: relative;
+        margin:3px;
            
 }/*the ring picture to click on to mark/done */
 
@@ -226,12 +227,17 @@ li {
     color: #cc9a9a;
     margin-bottom: 11px;
     transition: color 0.2s ease-out;
+    border:none;
+    outline:none;
+    
 }/*the button that gets clicked when we click on the X picture*/
 
 .delete{
     width:15px;
     height:15px;
     opacity:0.5;
+    border:none;
+    outline:none;
 }/*the X pic that we click on to delete item*/
 
 #list-item:hover .ester{
@@ -241,4 +247,5 @@ li {
     font-size:24px;
     border:none;
     outline:none;
+  
 }/*when we double click to edit something existing*/
