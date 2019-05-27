@@ -66,6 +66,7 @@ header{
     border: solid #e6e6e6 2px;
     height:58.67px;
     display:block;
+    background: #fff;
      
     
 }
@@ -177,7 +178,12 @@ li {
         opacity: 0;
         position: absolute;
         display:none;
+        height:40px;
 
+}
+.checkpic{
+    height:40px;
+    
 }
 #check-all{
   float:left;  
@@ -196,4 +202,10 @@ li {
     color: #cc9a9a;
     margin-bottom: 11px;
     transition: color 0.2s ease-out;
+}
+.editbox{
+    
+    font-size: 24px;
+    color: #d9d9d9;
+    border:none;
 }
