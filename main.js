@@ -58,7 +58,7 @@ function RemoveItem(div) {
     }
 }
 
-function AddItem(thisLabel, active) {
+function AddItemToContext(thisLabel, active) {
     var div = document.createElement("div");
     div.id = "list-item";
     var input = document.createElement("input");
@@ -83,8 +83,10 @@ function AddItem(thisLabel, active) {
     label2.appendChild(text);
     div.appendChild(button);
     button.appendChild(img2);
-    
-    bigBox.insertBefore(div, bottomRow);
+        
+    if (location.hash === "#active") {
+        AddItemVisually(div);
+    }
     
     input.onclick = () => {
         event.preventDefault();
@@ -106,6 +108,10 @@ function AddItem(thisLabel, active) {
 
     
     i++;
+}
+
+function AddItemVisually(div) {
+    bigBox.insertBefore(div, bottomRow);
 }
 
 function ChangeBetweenDoneAndNotDone(div) {
@@ -148,7 +154,7 @@ function TopRowButtonChange() {
 // Events
 
 function locationHashChanged() { 
-    if (location.hash === '#all') { 
+    if (location.hash === '#') { 
       console.log("You're visiting a cool feature!"); 
     } 
   } 
@@ -160,7 +166,7 @@ addItemTextbox.addEventListener("keydown", function(e) {
             if (document.getElementById("big") === null){
                 AddBigBox(true);
             }
-            AddItem(item, true);
+            AddItemToContext(item, true);
             addItemTextbox.value = "";
         }
     }
@@ -208,13 +214,38 @@ if (sessionStorage.length !== 0){
 
         var active = value[0] === 'y';
         var label = value[1];
-        AddItem(label, active);
+        AddItemToContext(label, active);
     }
     console.log(sessionStorage);
 }
 
 
 
-// window.addEventListener('hashchange', function() {
-//     console.log('The hash has changed!')
-// }, false);
+window.addEventListener('hashchange', function() {
+    console.log('The hash has changed!')
+    if (location.hash === "#active") {
+        for (var i = 0; i < allItems.length; i++) {
+            allItems[i].remove();
+        }
+        for (var i = 0; i < activeItems.length; i++) {
+            AddItemVisually(activeItems[i]);
+        }
+    }    
+    else if (location.hash === "#completed") {
+        for (var i = 0; i < allItems.length; i++) {
+            allItems[i].remove();
+        }
+        for (var i = 0; i < doneItems.length; i++) {
+            AddItemVisually(doneItems[i]);
+        }
+    }    
+    else {
+        for (var i = 0; i < allItems.length; i++) {
+            allItems[i].remove();
+        }
+        for (var i = 0; i < allItems.length; i++) {
+            AddItemVisually(allItems[i]);
+        }
+    }
+
+}, false);
