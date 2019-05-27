@@ -64,7 +64,6 @@ function AddItemToContext(thisLabel, active) {
     var input = document.createElement("input");
     input.type = "checkbox";
     input.id = 'check' + i;
-
     var label1 = document.createElement("label");
     label1.setAttribute("for", 'check' + i);
     var img1 = document.createElement("img");
@@ -85,6 +84,16 @@ function AddItemToContext(thisLabel, active) {
     button.appendChild(img2);
         
     if (location.hash === "#active") {
+        if (active) {
+            AddItemVisually(div);
+        }
+    }
+    else if (location.hash === '#completed') {
+        if (!active) {
+            AddItemVisually(div);
+        }
+    }
+    else {
         AddItemVisually(div);
     }
     
@@ -96,6 +105,11 @@ function AddItemToContext(thisLabel, active) {
     button.onclick = event => {
         RemoveItem(div);
     }
+
+    label2.addEventListener("click", function() {
+        console.log('doubleclick happened');
+    })
+
     allItems.push(div);
     if (active) { activeItems.push(div); }
     else { doneItems.push(div); }
@@ -222,7 +236,6 @@ if (sessionStorage.length !== 0){
 
 
 window.addEventListener('hashchange', function() {
-    console.log('The hash has changed!')
     if (location.hash === "#active") {
         for (var i = 0; i < allItems.length; i++) {
             allItems[i].remove();
