@@ -44,11 +44,10 @@ header{
     border-top: 1px solid #e6e6e6;
 }
 
-
 #bottom{
     color: #777;
     padding: 10px 15px;
-    height: 50px;
+    height: 15px;
     text-align: center;
     border-top: 1px solid #e6e6e6;
     border: solid #e6e6e6 2px;
@@ -102,7 +101,13 @@ button{
     float: left;
     text-align: left;
     color: #777777;
-    flex:0.5;
+    flex:1;
+}
+#all{
+    justify-content: space-between;
+    flex:2;
+    position:relative;
+    height:70px;
 }
 #clear{
     float: right;
@@ -110,7 +115,7 @@ button{
     line-height: 20px;
     text-decoration: none;
     cursor: pointer;
-    flex:0.5;
+    flex:1;
 }
 #clear:hover {
     text-decoration: underline;
@@ -128,11 +133,12 @@ ul {
     
 }
 li {
-    float: left;
+    float:left;
+    position: relative;
    display:block;
     color: #777777;
     text-align: center;
-    padding: 12px;
+    padding:12px;
     text-decoration: none;
     font: normal normal 300 normal 14px / 19.6px "Helvetica Neue", Helvetica, Arial, sans-serif;
   }
@@ -202,6 +208,10 @@ li {
     color: #cc9a9a;
     margin-bottom: 11px;
     transition: color 0.2s ease-out;
+}
+.delete{
+    width:15px;
+    height:15px;
 }
 #list-item:hover .ester{
     display:block;
