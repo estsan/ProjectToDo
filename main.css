@@ -12,32 +12,37 @@ body {
     font-weight: 300;
     
 }
-
-h1{ 
+.main
+{
+    background: #fff;
+    margin: 130px 0 40px 0;
+    position: relative;
+    box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.2), 0 25px 50px 0 rgba(0, 0, 0, 0.1);
+}
+header{
+    display: block;
+    height:65px;
+    width:550px;
+}
+.main h1{ 
+    position: absolute;
+    top: -155px;
+    width: 100%;
+    font-size: 100px;
+    font-weight: 100;
     text-align: center;
-    font: 100px 'Helvetica Neue', Helvetica, Arial, sans-serif;
-    color:rgba(175, 47, 47, 0.15);  
+    color: rgba(175, 47, 47, 0.15);
+    -webkit-text-rendering: optimizeLegibility;
+    -moz-text-rendering: optimizeLegibility;
+    text-rendering: optimizeLegibility;
    
 }
 
-#top
-{
-    display: block;
-    padding: 16px 16px 16px 60px;
-    border: none;
-    background: #fff;
-    box-shadow: inset 0 -2px 1px rgba(0,0,0,0.03);
-    box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.2), 0 25px 50px 0 rgba(0, 0, 0, 0.1);
-    height:40px;
-    
-}
+
 #big{
     position: relative;
     z-index: 2;
     border-top: 1px solid #e6e6e6;
-    background: #fff;
-    box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.2), 0 25px 50px 0 rgba(0, 0, 0, 0.1);
-    
 }
 
 
@@ -61,6 +66,7 @@ h1{
     border: solid #e6e6e6 2px;
     height:58.67px;
     display:block;
+    background: #fff;
      
     
 }
@@ -76,20 +82,6 @@ footer{
     text-align: center;
 }
 
-#delete{
-    display: none;
-    position: absolute;
-    top: 0;
-    right: 10px;
-    bottom: 0;
-    width: 40px;
-    height: 40px;
-    margin: auto 0;
-    font-size: 30px;
-    color: #cc9a9a;
-    margin-bottom: 11px;
-    transition: color 0.2s ease-out;
-}
 button{
     margin: 0;
     padding: 0;
@@ -132,16 +124,14 @@ ul {
     margin-inline-start: 0px;
     margin-inline-end: 0px;
     padding-inline-start: 40px;
-    flex:2;
-    
-    
+    flex:2;    
     
 }
 li {
     float: left;
-    display: block;
+   display:block;
     color: #777777;
-    align-items: center;
+    text-align: center;
     padding: 12px;
     text-decoration: none;
     font: normal normal 300 normal 14px / 19.6px "Helvetica Neue", Helvetica, Arial, sans-serif;
@@ -158,6 +148,7 @@ li {
     padding-right: 10px;
     border-radius: 2px;
   }
+
 
 #text-add {
     padding: 16px 16px 16px 60px;
@@ -177,23 +168,38 @@ li {
     border: none;
     font: normal normal 300 normal 24px / 33.6px "Helvetica Neue", Helvetica, Arial, sans-serif;
     outline: rgb(77, 77, 77) none 0px;
-    
-    
+ 
 }/*#INPUT to the TODO textbox*/
 
-#check{
+.invisiblebox{
     
         text-align: center;
         border: none;
         opacity: 0;
         position: absolute;
         display:none;
+        height:40px;
 
+}
+.checkpic{
+    height:40px;
+    
 }
 #check-all{
   float:left;  
   width: 20px;
 }
 .ester{
-    width:100px;
+   
+    position: absolute;
+    top: 0;
+    right: 10px;
+    bottom: 0;
+    width: 40px;
+    height: 40px;
+    margin: auto 0;
+    font-size: 30px;
+    color: #cc9a9a;
+    margin-bottom: 11px;
+    transition: color 0.2s ease-out;
 }

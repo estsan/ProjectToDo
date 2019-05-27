@@ -62,17 +62,20 @@ function AddItemToContext(thisLabel, active) {
     var div = document.createElement("div");
     div.id = "list-item";
     var input = document.createElement("input");
+    
     input.type = "checkbox";
     input.id = 'check' + i;
     var label1 = document.createElement("label");
     label1.setAttribute("for", 'check' + i);
     input.setAttribute("class", "invisiblebox")
+    label1.setAttribute("class","checkpic")
     var img1 = document.createElement("img");
     if (active) { img1.src = "pictures/circle.png"; }
     else { img1.src = "pictures/circle-check.png"; }
     var label2 = document.createElement("label");
     label2.setAttribute("class", "item-label");
     var text = document.createTextNode(thisLabel);
+    
     var button = document.createElement("button");
     button.setAttribute("class", "ester");
     var img2 = document.createElement("img");
@@ -112,6 +115,7 @@ function AddItemToContext(thisLabel, active) {
     label2.addEventListener("dblclick", function() {
         var textbox = document.createElement("input");
         textbox.setAttribute("type", "textbox");
+        textbox.setAttribute("class","editbox")
         textbox.value = thisLabel + '\n';
         label2.replaceWith(textbox);
 
