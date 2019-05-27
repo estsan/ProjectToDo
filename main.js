@@ -116,7 +116,7 @@ function AddItemToContext(thisLabel, active) {
         var textbox = document.createElement("input");
         textbox.setAttribute("type", "textbox");
         textbox.setAttribute("class","editbox")
-        textbox.value = thisLabel + '\n';
+        textbox.value = div.children[2].innerHTML;// from ;
         label2.replaceWith(textbox);
 
         textbox.addEventListener("keydown", function(e) {
@@ -255,10 +255,19 @@ AddBigBox(false);
 if (sessionStorage.length !== 0){
     AddBigBox(true);
     var tempLables = new Array();
-    for (var j = 0; j < sessionStorage.length; j++){
-        var keyName = sessionStorage.key(j);
-        var valueName = sessionStorage.getItem(keyName);
-        tempLables[j] = valueName;
+    var k = 0;
+    var sant = true;
+    while (true) {    
+        var keyName = 'check' + k;
+        if (sessionStorage.getItem(keyName) !== null) { 
+            var valueName = sessionStorage.getItem(keyName);
+            tempLables.push(valueName);
+        }
+        else {console.log('skipped');}
+        if (sessionStorage.length === tempLables.length) {
+            break;
+        }
+        k++;
     }
     sessionStorage.clear();
     
@@ -270,6 +279,7 @@ if (sessionStorage.length !== 0){
         AddItemToContext(label, active);
     }
     console.log(sessionStorage);
+    console.log(tempLables);
 }
 
 
