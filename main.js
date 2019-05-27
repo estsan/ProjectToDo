@@ -62,7 +62,6 @@ function AddItemToContext(thisLabel, active) {
     var div = document.createElement("div");
     div.id = "list-item";
     var input = document.createElement("input");
-    
     input.type = "checkbox";
     input.id = 'check' + i;
     var label1 = document.createElement("label");
@@ -80,6 +79,7 @@ function AddItemToContext(thisLabel, active) {
     button.setAttribute("class", "ester");
     var img2 = document.createElement("img");
     img2.src = "pictures/x.png";
+    img2.setAttribute("class","delete");
     
     div.appendChild(input);
     div.appendChild(label1);

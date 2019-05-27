@@ -38,7 +38,6 @@ header{
    
 }
 
-
 #big{
     position: relative;
     z-index: 2;
@@ -70,6 +69,7 @@ header{
      
     
 }
+
 img {
     width:30px;
        
@@ -190,7 +190,7 @@ li {
   width: 20px;
 }
 .ester{
-   
+  display:none;
     position: absolute;
     top: 0;
     right: 10px;
@@ -202,4 +202,12 @@ li {
     color: #cc9a9a;
     margin-bottom: 11px;
     transition: color 0.2s ease-out;
+}
+#list-item:hover .ester{
+    display:block;
+}
+.editbox{
+    font-size:24px;
+    border:none;
+    outline:none;
 }
