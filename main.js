@@ -66,11 +66,12 @@ function AddItemToContext(thisLabel, active) {
     input.id = 'check' + i;
     var label1 = document.createElement("label");
     label1.setAttribute("for", 'check' + i);
-    label1.setAttribute("class", "invisiblebox")
+    input.setAttribute("class", "invisiblebox")
     var img1 = document.createElement("img");
     if (active) { img1.src = "pictures/circle.png"; }
     else { img1.src = "pictures/circle-check.png"; }
     var label2 = document.createElement("label");
+    label2.setAttribute("class", "item-label");
     var text = document.createTextNode(thisLabel);
     var button = document.createElement("button");
     button.setAttribute("class", "ester");
@@ -114,22 +115,19 @@ function AddItemToContext(thisLabel, active) {
         textbox.value = thisLabel + '\n';
         label2.replaceWith(textbox);
 
-
-
         textbox.addEventListener("keydown", function(e) {
             var item = textbox.value;
             if (e.keyCode === 13){
                 if (item !== "") {
                     textbox.replaceWith(label2);
                     label2.innerHTML = item;
-
+                    label2.setAttribute("class", "item-label");
                     
                     var key = label1.getAttribute("for");
                     sessionStorage.removeItem(key);
                     if (active) { var value = [ 'y', item]; }
                     else {var value = ['n', item]; }
                     sessionStorage.setItem(key, JSON.stringify(value));
-                    // Update sessionStorage
                 }
                 else {
                     RemoveItem();
@@ -140,7 +138,11 @@ function AddItemToContext(thisLabel, active) {
 
     allItems.push(div);
     if (active) { activeItems.push(div); }
-    else { doneItems.push(div); }
+    else { 
+        doneItems.push(div); 
+        label2.style.textDecoration = 'line-through';
+        label2.style.color = '#d9d9d9';
+    }
     UpdateItemsLeft();
 
     var key = label1.getAttribute("for");
@@ -158,6 +160,7 @@ function AddItemVisually(div) {
 
 function ChangeBetweenDoneAndNotDone(div) {
     img1 = div.children[1].children[0];
+    lbl1 = div.children[2];
     if (activeItems.includes(div)) {
         img1.src = "pictures/circle-check.png";
         doneItems.push(div);
@@ -168,6 +171,8 @@ function ChangeBetweenDoneAndNotDone(div) {
         sessionStorage.removeItem(key);
         value[0] = 'n';
         sessionStorage.setItem(key, JSON.stringify(value));
+        lbl1.style.textDecoration = 'line-through';
+        lbl1.style.color = '#d9d9d9';
     }
     else {
         img1.src = "pictures/circle.png";
@@ -179,6 +184,8 @@ function ChangeBetweenDoneAndNotDone(div) {
         sessionStorage.removeItem(key);
         value[0] = 'y';
         sessionStorage.setItem(key, JSON.stringify(value));
+        lbl1.style.textDecoration = 'none';
+        lbl1.style.color = '#777777';
     }
 }
 
