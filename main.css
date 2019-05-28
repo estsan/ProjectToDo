@@ -56,7 +56,7 @@ header{
     box-shadow: 0 1px 1px rgba(0, 0, 0, 0.2), 0 8px 0 -3px #f6f6f6, 0 9px 1px -3px rgba(0, 0, 0, 0.2), 0 16px 0 -6px #f6f6f6, 0 17px 2px -6px rgba(0, 0, 0, 0.2);
 }/*bottom div that holds: item counter, clear completed and the 3 li´s*/
 
-#list-item{
+.list-item{
     position: relative;
     font-size: 24px;
     border: solid #e6e6e6 0.6px;
@@ -245,7 +245,7 @@ li {
     outline:none;
 }/*the X pic that we click on to delete item*/
 
-#list-item:hover .ester{
+.list-item:hover .ester{
     display:block;
 }
 .editbox{
@@ -256,7 +256,7 @@ li {
   
 }/*when we double click to edit something existing*/
 
-#list-item{
+.list-item{
     word-break: break-all;
     display: flex;
 }

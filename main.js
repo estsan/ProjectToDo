@@ -2,7 +2,7 @@
 let allItems = new Array();
 let doneItems = new Array();
 let activeItems = new Array();
-let bigBox = document.querySelector("#big")
+let bigBox = document.querySelector(".big")
 let addItemTextbox = document.querySelector("#text-add")
 let listItem = document.querySelector("#list-item");
 let bottomRow = document.querySelector("#bottom");
@@ -10,9 +10,6 @@ let checkAll = document.querySelector("#check-all-img");
 let clearCompleted = document.querySelector("#clear");
 let itemsLeftLabel = document.querySelector("#items-left");
 var i = 0;
-
-// Denna är bara med tills CSSen är som den ska
-listItem.remove();
 
 // Funktioner
 
@@ -43,7 +40,7 @@ function UpdateItemsLeft() {
 
 function RemoveItem(div) {
     allItems.splice(allItems.indexOf(div), 1);  
-    sessionStorage.removeItem(div.children[1].getAttribute("for"));
+    sessionStorage.removeItem(div.children[0].getAttribute("id"));
     if (doneItems.includes(div)) {
         doneItems.splice(doneItems.indexOf(div), 1);
     }
@@ -60,35 +57,22 @@ function RemoveItem(div) {
 
 function AddItemToContext(thisLabel, active) {
     var div = document.createElement("div");
-    div.id = "list-item";
+    div.setAttribute('class', "list-item");
     var input = document.createElement("input");
     input.type = "checkbox";
     input.id = 'check' + i;
-    var label1 = document.createElement("label");
-    label1.setAttribute("for", 'check' + i);
-    input.setAttribute("class", "invisiblebox")
-    label1.setAttribute("class","checkpic")
-    var img1 = document.createElement("img");
-    if (active) { img1.src = "pictures/circle.png"; }
-    else { img1.src = "pictures/circle-check.png"; }
-    img1.setAttribute("class","ring")
-    var label2 = document.createElement("label");
-    label2.setAttribute("class", "item-label");
+    input.setAttribute('class', 'circle-check');
+
+    var label = document.createElement("label");
+    label.setAttribute("class", "item-label");
     var text = document.createTextNode(thisLabel);
-    
     var button = document.createElement("button");
-    button.setAttribute("class", "ester");
-    var img2 = document.createElement("img");
-    img2.src = "pictures/x.png";
-    img2.setAttribute("class","delete");
+    button.setAttribute("class", "delete-item");
     
     div.appendChild(input);
-    div.appendChild(label1);
-    label1.appendChild(img1);
-    div.appendChild(label2);
-    label2.appendChild(text);
+    div.appendChild(label);
+    label.appendChild(text);
     div.appendChild(button);
-    button.appendChild(img2);
         
     if (location.hash === "#active") {
         if (active) {
@@ -105,7 +89,7 @@ function AddItemToContext(thisLabel, active) {
     }
     
     input.onclick = () => {
-        event.preventDefault();
+        //event.preventDefault();
         ChangeBetweenDoneAndNotDone(div);
     };
     
@@ -113,20 +97,20 @@ function AddItemToContext(thisLabel, active) {
         RemoveItem(div);
     }
 
-    label2.addEventListener("dblclick", function() {
+    label.addEventListener("dblclick", function() {
         var textbox = document.createElement("input");
         textbox.setAttribute("type", "textbox");
         textbox.setAttribute("class","editbox")
         textbox.value = div.children[2].innerHTML;// from ;
-        label2.replaceWith(textbox);
+        label.replaceWith(textbox);
 
         textbox.addEventListener("keydown", function(e) {
             var item = textbox.value;
             if (e.keyCode === 13){
                 if (item !== "") {
-                    textbox.replaceWith(label2);
-                    label2.innerHTML = item;
-                    label2.setAttribute("class", "item-label");
+                    textbox.replaceWith(label);
+                    label.innerHTML = item;
+                    label.setAttribute("class", "item-label");
                     
                     var key = label1.getAttribute("for");
                     sessionStorage.removeItem(key);
@@ -142,15 +126,19 @@ function AddItemToContext(thisLabel, active) {
     });
 
     allItems.push(div);
-    if (active) { activeItems.push(div); }
+    if (active) {
+        activeItems.push(div);
+        input.checked = false; 
+    }
     else { 
         doneItems.push(div); 
-        label2.style.textDecoration = 'line-through';
-        label2.style.color = '#d9d9d9';
+        label.style.textDecoration = 'line-through';
+        label.style.color = '#d9d9d9';
+        input.checked = true;
     }
     UpdateItemsLeft();
 
-    var key = label1.getAttribute("for");
+    var key = input.getAttribute("id");
     if (active) { var value = [ 'y', thisLabel]; }
     else {var value = ['n', thisLabel]; }
     sessionStorage.setItem(key, JSON.stringify(value));
@@ -164,14 +152,12 @@ function AddItemVisually(div) {
 }
 
 function ChangeBetweenDoneAndNotDone(div) {
-    img1 = div.children[1].children[0];
-    lbl1 = div.children[2];
+    lbl1 = div.children[1];
     if (activeItems.includes(div)) {
-        img1.src = "pictures/circle-check.png";
         doneItems.push(div);
         activeItems.splice(activeItems.indexOf(div), 1);
         UpdateItemsLeft();
-        var key = div.children[1].getAttribute("for");
+        var key = div.children[0].getAttribute("id");
         var value = JSON.parse(sessionStorage.getItem(key));
         sessionStorage.removeItem(key);
         value[0] = 'n';
@@ -180,11 +166,10 @@ function ChangeBetweenDoneAndNotDone(div) {
         lbl1.style.color = '#d9d9d9';
     }
     else {
-        img1.src = "pictures/circle.png";
         activeItems.push(div);
         doneItems.splice(doneItems.indexOf(div), 1);
         UpdateItemsLeft();
-        var key = div.children[1].getAttribute("for");
+        var key = div.children[0].getAttribute("id");
         var value = JSON.parse(sessionStorage.getItem(key));
         sessionStorage.removeItem(key);
         value[0] = 'y';
