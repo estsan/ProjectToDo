@@ -61,7 +61,8 @@ header{
     font-size: 24px;
     border: solid #e6e6e6 0.6px;
     height:58.67px;
-    display:block;
+    display: flex;
+    
     background: #fff;     
 }/*The whole box which is created for every value that we add in textbox*/
 
@@ -170,11 +171,15 @@ li {
   opacity:0.5;
 }/*Picture arrow of selecting all items*/
 
-#text-add {
+::placeholder { 
     
     font-style:italic;
-    font-size: 25px;
     opacity:0.25;
+  }
+
+#text-add {
+    
+    font-size: 25px;
     padding: 16px 16px 16px 60px;
     bottom: 0px;
     color: rgb(77, 77, 77);
@@ -215,7 +220,7 @@ li {
 }/*the ring picture to click on to mark/done */
 
 .ester{
-  display:none;
+    display:none;
     position: absolute;
     top: 0;
     right: 10px;
@@ -247,5 +252,12 @@ li {
     font-size:24px;
     border:none;
     outline:none;
+    
   
 }/*when we double click to edit something existing*/
+
+#list-item{
+    word-break: break-all;
+    display: flex;
+}
+
