@@ -112,7 +112,7 @@ function AddItemToContext(thisLabel, active) {
                     label.innerHTML = item;
                     label.setAttribute("class", "item-label");
                     
-                    var key = label1.getAttribute("for");
+                    var key = input.getAttribute("id");
                     sessionStorage.removeItem(key);
                     if (active) { var value = [ 'y', item]; }
                     else {var value = ['n', item]; }
