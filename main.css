@@ -1,4 +1,3 @@
-
 body {
     font: 14px 'Helvetica Neue', Helvetica, Arial, sans-serif;
     line-height: 1.4em;
@@ -9,19 +8,17 @@ body {
     margin: 0 auto;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
-    font-weight: 300;
-    
+    font-weight: 300;   
 }
-.main
-{
+
+.main {
     background: #fff;
     margin: 140px 0 0px 0;
     position: relative;
     box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.2), 0 25px 50px 0 rgba(0, 0, 0, 0.1);
-
 }/*includes everything, we can call it a wrapper*/
 
-.main h1{ 
+.main h1 { 
     position: absolute;
     top: -155px;
     width: 100%;
@@ -29,16 +26,15 @@ body {
     font-weight: 100;
     text-align: center;
     color: rgba(175, 47, 47, 0.15);
-    
 }/*the todo header text of the page*/
 
-header{
+header {
     display: block;
     height:65px;
     width:550px;
 }/*this is the box that holds the arrow selector + textbox */
 
-.big{
+.big {
     position: relative;
     z-index: 2;
     display:flex;
@@ -46,7 +42,7 @@ header{
     box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.2), 0 25px 50px 0 rgba(0, 0, 0, 0.1);
 }
 
-#bottom{
+#bottom {
     color: #777;
     padding: 10px 15px;
     height: 15px;
@@ -58,7 +54,7 @@ header{
     box-shadow: 0 1px 1px rgba(0, 0, 0, 0.2), 0 8px 0 -3px #f6f6f6, 0 9px 1px -3px rgba(0, 0, 0, 0.2), 0 16px 0 -6px #f6f6f6, 0 17px 2px -6px rgba(0, 0, 0, 0.2);
 }/*bottom div that holds: item counter, clear completed and the 3 li´s*/
 
-.list-item{
+.list-item {
     position: relative;
     font-size: 24px;
     border: solid #e6e6e6 0.6px;
@@ -67,10 +63,9 @@ header{
     background: #fff;    
     display:flex;
     flex-wrap:wrap ;
-    
 }/*The whole box which is created for every value that we add in textbox*/
 
-footer{
+footer {
     margin: 65px auto 0;
     color: #bfbfbf;
     font-size: 10px;
@@ -78,7 +73,7 @@ footer{
     text-align: center;
 }/*the text at the end of the page*/
 
-button{
+button {
     border:none;
     margin: 0;
     padding: 0;
@@ -96,32 +91,19 @@ button{
     float:right;
 }/*for all buttons in general*/
 
-#items-left{
+#items-left {
     float: left;
     text-align: left;
     color: #777777;
     flex:1;
 }/*item counter label, in bottom div */
 
-#all{
+#links {
     justify-content: space-between;
     flex:2;
     position:relative;
     height:70px;
 } /*a div that holds the 3 li´s inside in bottom div*/
-
-#clear{
-    float: right;
-    position: relative;
-    line-height: 20px;
-    text-decoration: none;
-    cursor: pointer;
-    flex:1;
-}/*Clear completed button*/
-
-#clear:hover {
-    text-decoration: underline;
-  }
 
 ul {
     display: block;
@@ -132,8 +114,8 @@ ul {
     margin-inline-end: 0px;
     padding-inline-start: 40px;
     flex:2;    
-    
 }
+
 li {
     float:left;
     position: relative;
@@ -143,22 +125,37 @@ li {
     padding:12px;
     text-decoration: none;
     font: normal normal 300 normal 14px / 19.6px "Helvetica Neue", Helvetica, Arial, sans-serif;
-  }
-  li a {
+}
+
+li a {
     display: block;
     color: #777777;
     text-align: center;
     text-decoration: none;
-  }
-  li a:hover {
+    padding: 2px;
+}
+
+li a:hover {
     border: 1px solid rgba(175, 47, 47, 0.15);
     padding-left: 10px;
     padding-right: 10px;
     border-radius: 2px;
-  }
-  /*the 3 li´s in bottom div*/
+}/*the 3 li´s in bottom div*/
 
-#check-all{
+#clear {
+    float: right;
+    position: relative;
+    line-height: 20px;
+    text-decoration: none;
+    cursor: pointer;
+    flex:1;
+}/*Clear completed button*/
+
+#clear:hover {
+    text-decoration: underline;
+}
+    
+#check-all {
     float:left;
     border:none;
     outline:none;
@@ -189,10 +186,11 @@ li {
 	color: #737373;
 }
 
-::placeholder{
+::placeholder {
     font-style:italic;
     opacity:0.25;
 }
+
 #text-add {
     font-size: 25px;
     padding: 16px 16px 16px 16px;
@@ -223,20 +221,18 @@ li {
         position: absolute;
         display:none;
         height:40px;
-
 }
-.ring{
+
+.ring {
     
         width:40px;
         height:40px;
         opacity:0.5;
         position: relative;
-        margin:3px;
-           
+        margin:3px;      
 }/*the ring picture to click on to mark/done */
 
-
-.delete{
+.delete {
     width:15px;
     height:15px;
     opacity:0.5;
@@ -244,7 +240,7 @@ li {
     outline:none;
 }/*the X pic that we click on to delete item*/
 
-.editbox{
+.editbox {
     font-size:24px;
     border:none;
     outline:none;
@@ -254,7 +250,6 @@ li {
     display: flex;
     position: relative;
     left:40px;
-   
  }/*when we double click to edit something existing*/
 
 
@@ -274,19 +269,17 @@ li {
     outline: none;
     border: none;
 }
+
 .list-item .circle-check:checked {
     background-image: url('data:image/svg+xml;utf8,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20width%3D%2240%22%20height%3D%2240%22%20viewBox%3D%22-10%20-18%20100%20135%22%3E%3Ccircle%20cx%3D%2250%22%20cy%3D%2250%22%20r%3D%2250%22%20fill%3D%22none%22%20stroke%3D%22%23bddad5%22%20stroke-width%3D%223%22/%3E%3Cpath%20fill%3D%22%235dc2af%22%20d%3D%22M72%2025L42%2071%2027%2056l-4%204%2020%2020%2034-52z%22/%3E%3C/svg%3E');
 }
+
 .item-label {
     display: block;
     padding: 15px 15px 15px 60px;
     word-break:break-all;
-    display:flex;
-    
- }
- 
-
-/*the button that gets clicked when we click on the X picture*/
+    display:flex; 
+} /*the button that gets clicked when we click on the X picture*/
 
 .delete-item {
     display: none;
