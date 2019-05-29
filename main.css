@@ -10,6 +10,7 @@ body {
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     font-weight: 300;
+    overflow-x: hidden !important;
     
 }
 .main
@@ -119,6 +120,8 @@ button{
     text-decoration: none;
     cursor: pointer;
     flex:1;
+    outline:none;
+    border:none;
 }/*Clear completed button*/
 
 #clear:hover {
@@ -288,23 +291,24 @@ li {
     display: block;
     padding: 15px 15px 15px 60px;
     word-break:break-all;
-    display:flex; 
-    margin-top: 5px;
-    margin-bottom: 5px;
-} /*the button that gets clicked when we click on the X picture*/
+    display:flex;
+    
+ }
+ 
 
 /*the button that gets clicked when we click on the X picture*/
 
 .delete-item {
     display: none;
 	position: absolute;
+	top: 0;
 	right: 10px;
-	bottom: 7px;
+	bottom: 0;
 	width: 40px;
 	height: 40px;
 	margin: auto 0;
 	font-size: 30px;
-	margin-bottom: 0px;
+	margin-bottom: 11px;
     display: block;
     color: white;
     border:none;
@@ -328,3 +332,8 @@ li {
     display:flex;
     flex-wrap: wrap;
 }
+@media screen and (max-width:550px) {
+    body {
+        overflow-x: hidden !important;
+    }
+  }
