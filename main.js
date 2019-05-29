@@ -6,7 +6,7 @@ let bigBox = document.querySelector(".big")
 let addItemTextbox = document.querySelector("#text-add")
 let listItem = document.querySelector("#list-item");
 let bottomRow = document.querySelector("#bottom");
-let checkAll = document.querySelector('[for="check-all"]');
+let checkAll = document.querySelector('#check-all');
 let clearCompleted = document.querySelector("#clear");
 let itemsLeftLabel = document.querySelector("#items-left");
 var i = 0;
@@ -180,17 +180,18 @@ function ChangeBetweenDoneAndNotDone(div) {
         lbl1.style.textDecoration = 'none';
         lbl1.style.color = '#777777';
     }
-    
+
 }
 
 // Change the appearence on the button next to the textbox when all tasks are marked
 function TopRowButtonChange() {
-    var number = activeItems.length;
-    if ( number === 0 ){
-        checkAll.src = "pictures/arrow-dark.png";
+    var activeNumber = activeItems.length;
+    var allNumber = allItems.length;
+    if ( activeNumber === 0 && allNumber !== 0 ){
+        checkAll.checked = true;
     }
     else{
-        checkAll.src = "pictures/arrow-light.png";
+        checkAll.checked = false;
     }
 }
 
