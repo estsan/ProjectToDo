@@ -6,7 +6,7 @@ let bigBox = document.querySelector(".big")
 let addItemTextbox = document.querySelector("#text-add")
 let listItem = document.querySelector("#list-item");
 let bottomRow = document.querySelector("#bottom");
-let checkAll = document.querySelector("#check-all-img");
+let checkAll = document.querySelector('[for="check-all"]');
 let clearCompleted = document.querySelector("#clear");
 let itemsLeftLabel = document.querySelector("#items-left");
 var i = 0;
@@ -153,7 +153,9 @@ function AddItemVisually(div) {
 
 function ChangeBetweenDoneAndNotDone(div) {
     lbl1 = div.children[1];
+    cb = div.children[0];
     if (activeItems.includes(div)) {
+        cb.checked = true;
         doneItems.push(div);
         activeItems.splice(activeItems.indexOf(div), 1);
         UpdateItemsLeft();
@@ -166,6 +168,7 @@ function ChangeBetweenDoneAndNotDone(div) {
         lbl1.style.color = '#d9d9d9';
     }
     else {
+        cb.checked = false;
         activeItems.push(div);
         doneItems.splice(doneItems.indexOf(div), 1);
         UpdateItemsLeft();
@@ -177,6 +180,7 @@ function ChangeBetweenDoneAndNotDone(div) {
         lbl1.style.textDecoration = 'none';
         lbl1.style.color = '#777777';
     }
+    
 }
 
 // Change the appearence on the button next to the textbox when all tasks are marked
@@ -212,7 +216,6 @@ addItemTextbox.addEventListener("keydown", function(e) {
 });
 
 checkAll.onclick = event => {
-    event.preventDefault();
     var all = allItems.length;
     var active = activeItems.length;
     for (var i = 0; i < all; i++){

@@ -157,25 +157,40 @@ li {
     float:left;
     border:none;
     outline:none;
+    display: none;
 }/*the button behind arrow selecting all picture*/
 
-#check-all-img{
-    float:left;
-    font-size: 22px;
-    position: relative;
-    padding: 10px 10px 10px 10px;
-    width: 30px;
-  height:30px;
-  margin:5px;
-  opacity:0.5;
-}/*Picture arrow of selecting all items*/
+#check-all + label {
+    width: 60px;
+	height: 34px;
+	font-size: 0;
+	position: absolute;
+	-webkit-transform: rotate(90deg);
+    transform: rotate(90deg);
+    margin: 20px 0px 0px -5px;
+}
+
+#check-all + label:before {
+	content: '❯';
+	font-size: 22px;
+	color: #e6e6e6;
+    padding: 10px 27px 10px 27px;
+    height: 20px;
+    width: 20px;
+    transform: rotate(90deg)
+}
+
+#check-all:checked + label:before {
+	color: #737373;
+}
+
 ::placeholder{
     font-style:italic;
     opacity:0.25;
 }
 #text-add {
     font-size: 25px;
-    padding: 16px 16px 16px 60px;
+    padding: 16px 16px 16px 16px;
     bottom: 0px;
     color: rgb(77, 77, 77);
     height: 30px;
@@ -191,6 +206,7 @@ li {
     background: rgba(0, 0, 0, 0.003) none repeat scroll 0% 0% / auto padding-box border-box;
     border: none;
     outline: rgb(77, 77, 77) none 0px;
+    left: 40px;
  
 }/*#INPUT to the TODO textbox*/
 
