@@ -1,4 +1,5 @@
 // Instansvariabler
+let html = document.querySelector("html");
 let allItems = new Array();
 let doneItems = new Array();
 let activeItems = new Array();
@@ -94,33 +95,7 @@ function AddItemToContext(thisLabel, active) {
         RemoveItem(div);
     }
 
-    label.addEventListener("dblclick", function() {
-        var textbox = document.createElement("input");
-        textbox.setAttribute("type", "textbox");
-        textbox.setAttribute("class","editbox")
-        textbox.value = div.children[1].innerHTML;// from ;
-        label.replaceWith(textbox);
-
-        textbox.addEventListener("keydown", function(e) {
-            var item = textbox.value;
-            if (e.keyCode === 13){
-                if (item !== "") {
-                    textbox.replaceWith(label);
-                    label.innerHTML = item;
-                    label.setAttribute("class", "item-label");
-                    
-                    var key = input.getAttribute("id");
-                    sessionStorage.removeItem(key);
-                    if (active) { var value = [ 'y', item]; }
-                    else {var value = ['n', item]; }
-                    sessionStorage.setItem(key, JSON.stringify(value));
-                }
-                else {
-                    RemoveItem();
-                }
-            }
-        });
-    });
+    label.addEventListener("dblclick", () => MakeEditTextbox(div));
 
     allItems.push(div);
     if (active) {
@@ -184,6 +159,56 @@ function ChangeBetweenDoneAndNotDone(div) {
         }
     }
 
+}
+
+function MakeEditTextbox(div) {
+    var textbox = document.createElement("input");
+    textbox.setAttribute("type", "textbox");
+    textbox.setAttribute("class","editbox");
+    textbox.value = div.children[1].innerHTML;
+    var checkbutton = div.children[0];
+    checkbutton.disabled = true;
+    var label = div.children[1];
+    label.replaceWith(textbox);
+    textbox.addEventListener("keydown", function(e) {
+        var item = textbox.value;
+        var div = textbox.parentElement;
+        if (e.keyCode === 13){
+            if (item !== "") {
+                textbox.replaceWith(label);
+                label.innerHTML = item;
+                label.setAttribute("class", "item-label");
+                var key = div.children[0].getAttribute("id");
+                sessionStorage.removeItem(key);
+                if (active) { var value = [ 'y', item]; }
+                else {var value = ['n', item]; }
+                sessionStorage.setItem(key, JSON.stringify(value));    
+            }
+            else {
+                RemoveItem(div);
+            }
+            checkbutton.disabled = false;
+        }
+    });
+}
+
+function UpdateItemLabel() {
+    var target = (event.target);
+    var textb = document.querySelector(".editbox");
+    if (textb !== null && target !== textb) {
+        var div = textb.parentElement;
+        var label = document.createElement("label");
+        label.setAttribute("class", "item-label");
+        label.innerHTML = textb.value;
+        textb.replaceWith(label);
+        var key = div.children[0].getAttribute("id");
+        sessionStorage.removeItem(key);
+        if (active) { var value = [ 'y', item]; }
+        else {var value = ['n', item]; }
+        sessionStorage.setItem(key, JSON.stringify(value));
+        label.addEventListener("dblclick", () => MakeEditTextbox(div));
+        checkbutton.disabled = false;
+    }
 }
 
 // Change the appearence on the button next to the textbox when all tasks are marked
@@ -272,6 +297,10 @@ window.addEventListener('hashchange', function() {
     selected.setAttribute("class", "selected");
 }, false);
 
+html.addEventListener("click", () => UpdateItemLabel());
+
+
+
 // Make the page look as wanted when we start
 
 AddBigBox(false);
@@ -287,7 +316,6 @@ if (sessionStorage.length !== 0){
             var valueName = sessionStorage.getItem(keyName);
             tempLables.push(valueName);
         }
-        else {console.log('skipped');}
         if (sessionStorage.length === tempLables.length) {
             break;
         }
@@ -302,8 +330,6 @@ if (sessionStorage.length !== 0){
         var label = value[1];
         AddItemToContext(label, active);
     }
-    console.log(sessionStorage);
-    console.log(tempLables);
 }
 
 // check hash
