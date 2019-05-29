@@ -103,12 +103,13 @@ button{
     flex:1;
 }/*item counter label, in bottom div */
 
-#all{
+#links{
     justify-content: space-between;
     flex:2;
     position:relative;
-    height:70px;
-    margin:-20px;
+    height:30px;
+    bottom:20px;
+    
 } /*a div that holds the 3 li´s inside in bottom div*/
 
 #clear{
@@ -205,6 +206,7 @@ li {
     position: relative;
     text-align: left;
     right: 0px;
+    width:550;
     text-decoration: none solid rgb(77, 77, 77);
     top: 0px;
     column-rule-color: rgb(77, 77, 77);
