@@ -108,6 +108,7 @@ button{
     flex:2;
     position:relative;
     height:70px;
+    margin:-20px;
 } /*a div that holds the 3 li´s inside in bottom div*/
 
 #clear{
@@ -133,12 +134,14 @@ ul {
     padding-inline-start: 40px;
     flex:2;    
     
+    
 }
 li {
     float:left;
     position: relative;
     display:block;
     color: #777777;
+    margin:-1px;
     text-align: center;
     padding:12px;
     text-decoration: none;
@@ -250,7 +253,7 @@ li {
     outline:none;
     width:510px;
     height:58px;
-    box-shadow: inset 0 0 5px #000000;
+    box-shadow: inset 0 0 4px #000000;
     display: flex;
     position: relative;
     left:40px;
