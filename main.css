@@ -133,7 +133,7 @@ li {
 
 li a {
     display: inline;
-    border: 1px solid white;
+    border: 1px solid transparent;
     color: #777777;
     text-align: center;
     text-decoration: none;
@@ -143,11 +143,11 @@ li a {
 }
 
 li a:hover {
-    border-color: rgba(175, 47, 47, 0.15);
+    border-color: rgba(175, 47, 47, 0.1);
 }/*the 3 li´s in bottom div*/
 
 li a.selected {
-    border-color: #777777;
+    border-color: rgba(175, 47, 47, 0.2);
 }
 
 #clear {

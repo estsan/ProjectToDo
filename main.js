@@ -304,6 +304,8 @@ if (sessionStorage.length !== 0){
 }
 
 // check hash
+var regEx = RegExp('#$')
+var uri = location.href;
 if ( location.hash === "#active" ) {
     for (k = 0 ; k < doneItems.length; k++) {
         doneItems[k].remove();
@@ -320,7 +322,7 @@ else if ( location.hash === "#completed" ) {
     var selected = document.querySelector(str);
     selected.setAttribute("class", "selected");
 }
-else if (location.hash === "" ) {
+else if (regEx.test(uri) ) {
     var str = "[href=\"#\"]";
     var selected = document.querySelector(str);
     selected.setAttribute("class", "selected");
