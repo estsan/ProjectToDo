@@ -179,9 +179,9 @@ function MakeEditTextbox(div) {
                 label.innerHTML = item;
                 label.setAttribute("class", "item-label");
                 var key = div.children[0].getAttribute("id");
+                var activeLetter= JSON.parse(sessionStorage.getItem(key))[0];
                 sessionStorage.removeItem(key);
-                if (active) { var value = [ 'y', item]; }
-                else {var value = ['n', item]; }
+                var value = [ activeLetter, item];
                 sessionStorage.setItem(key, JSON.stringify(value));    
             }
             else {
@@ -198,13 +198,14 @@ function UpdateItemLabel() {
     if (textb !== null && target !== textb) {
         var div = textb.parentElement;
         var label = document.createElement("label");
+        var checkbutton = div.children[0];
         label.setAttribute("class", "item-label");
         label.innerHTML = textb.value;
         textb.replaceWith(label);
         var key = div.children[0].getAttribute("id");
+        var activeLetter= JSON.parse(sessionStorage.getItem(key))[0];
         sessionStorage.removeItem(key);
-        if (active) { var value = [ 'y', item]; }
-        else {var value = ['n', item]; }
+        var value = [ activeLetter, label.innerHTML];
         sessionStorage.setItem(key, JSON.stringify(value));
         label.addEventListener("dblclick", () => MakeEditTextbox(div));
         checkbutton.disabled = false;
