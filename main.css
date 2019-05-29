@@ -103,6 +103,7 @@ button {
     flex:2;
     position:relative;
     height:70px;
+    padding-right: 50px
 } /*a div that holds the 3 li´s inside in bottom div*/
 
 ul {
@@ -113,7 +114,6 @@ ul {
     margin-inline-start: 0px;
     margin-inline-end: 0px;
     padding-inline-start: 40px;
-    flex:2;    
 }
 
 li {
@@ -122,24 +122,27 @@ li {
     display:block;
     color: #777777;
     text-align: center;
-    padding:12px;
+    padding-top: 12px;
     text-decoration: none;
     font: normal normal 300 normal 14px / 19.6px "Helvetica Neue", Helvetica, Arial, sans-serif;
 }
 
 li a {
-    display: block;
+    display: inline;
+    border: 1px solid white;
     color: #777777;
     text-align: center;
     text-decoration: none;
-    padding: 2px;
+    padding: 2px 7px 2px 7px;
+    border-radius: 2px;
+    margin: 3px;
 }
 
 li a:hover {
     border: 1px solid rgba(175, 47, 47, 0.15);
-    padding-left: 10px;
-    padding-right: 10px;
+    padding: 2px 7px 2px 7px;
     border-radius: 2px;
+    margin: 3px;
 }/*the 3 li´s in bottom div*/
 
 #clear {
@@ -210,26 +213,23 @@ li a:hover {
     border: none;
     outline: rgb(77, 77, 77) none 0px;
     left: 40px;
- 
 }/*#INPUT to the TODO textbox*/
 
 .invisiblebox{
-    
-        text-align: center;
-        border: none;
-        opacity: 0;
-        position: absolute;
-        display:none;
-        height:40px;
+    text-align: center;
+    border: none;
+    opacity: 0;
+    position: absolute;
+    display:none;
+    height:40px;
 }
 
 .ring {
-    
-        width:40px;
-        height:40px;
-        opacity:0.5;
-        position: relative;
-        margin:3px;      
+    width:40px;
+    height:40px;
+    opacity:0.5;
+    position: relative;
+    margin:3px;      
 }/*the ring picture to click on to mark/done */
 
 .delete {
