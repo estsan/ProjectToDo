@@ -172,14 +172,14 @@ li {
 	position: absolute;
 	-webkit-transform: rotate(90deg);
     transform: rotate(90deg);
-    margin: 20px 0px 0px -5px;
+    margin: 20px 5px 5px -10px;
 }
 
 #check-all + label:before {
 	content: '❯';
 	font-size: 22px;
 	color: #e6e6e6;
-    padding: 10px 27px 10px 27px;
+    padding: 10px 10px 5px 20px;
     height: 20px;
     width: 20px;
     transform: rotate(90deg)
