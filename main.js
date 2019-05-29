@@ -73,13 +73,8 @@ function AddItemToContext(thisLabel, active) {
     div.appendChild(label);
     label.appendChild(text);
     div.appendChild(button);
-        
-    if (location.hash === "#active") {
-        if (active) {
-            AddItemVisually(div);
-        }
-    }
-    else if (location.hash === '#completed') {
+
+    if (location.hash === '#completed') {
         if (!active) {
             AddItemVisually(div);
         }
@@ -166,6 +161,9 @@ function ChangeBetweenDoneAndNotDone(div) {
         sessionStorage.setItem(key, JSON.stringify(value));
         lbl1.style.textDecoration = 'line-through';
         lbl1.style.color = '#d9d9d9';
+        if ( location.hash === "#active" ) {
+            div.remove();
+        }
     }
     else {
         cb.checked = false;
@@ -179,6 +177,9 @@ function ChangeBetweenDoneAndNotDone(div) {
         sessionStorage.setItem(key, JSON.stringify(value));
         lbl1.style.textDecoration = 'none';
         lbl1.style.color = '#777777';
+        if ( location.hash === "#completed" ) {
+            AddItemVisually(div);
+        }
     }
 
 }
@@ -196,12 +197,6 @@ function TopRowButtonChange() {
 }
 
 // Events
-
-function locationHashChanged() { 
-    if (location.hash === '#') { 
-      console.log("You're visiting a cool feature!"); 
-    } 
-  } 
 
 addItemTextbox.addEventListener("keydown", function(e) {
     var item = addItemTextbox.value;
@@ -238,6 +233,42 @@ clearCompleted.onclick = event => {
     }
 };
 
+window.addEventListener('hashchange', function() {
+    var aLinks = document.querySelectorAll("a");
+    for (k = 0; k < aLinks.length; k++){
+        aLinks[k].removeAttribute("class");
+    }
+    if (location.hash === "#active") {
+        for (var i = 0; i < allItems.length; i++) {
+            allItems[i].remove();
+        }
+        for (var i = 0; i < activeItems.length; i++) {
+            AddItemVisually(activeItems[i]);
+        }
+        var str = "[href=\"#active\"]";
+    }    
+    else if (location.hash === "#completed") {
+        for (var i = 0; i < allItems.length; i++) {
+            allItems[i].remove();
+        }
+        for (var i = 0; i < doneItems.length; i++) {
+            AddItemVisually(doneItems[i]);
+        }
+        var str = "[href=\"#completed\"]";
+    }    
+    else {
+        for (var i = 0; i < allItems.length; i++) {
+            allItems[i].remove();
+        }
+        for (var i = 0; i < allItems.length; i++) {
+            AddItemVisually(allItems[i]);
+        }
+        var str = "[href=\"#\"]";
+    }
+    var selected = document.querySelector(str);
+    selected.setAttribute("class", "selected");
+}, false);
+
 // Make the page look as wanted when we start
 
 AddBigBox(false);
@@ -272,32 +303,27 @@ if (sessionStorage.length !== 0){
     console.log(tempLables);
 }
 
-
-
-window.addEventListener('hashchange', function() {
-    if (location.hash === "#active") {
-        for (var i = 0; i < allItems.length; i++) {
-            allItems[i].remove();
-        }
-        for (var i = 0; i < activeItems.length; i++) {
-            AddItemVisually(activeItems[i]);
-        }
-    }    
-    else if (location.hash === "#completed") {
-        for (var i = 0; i < allItems.length; i++) {
-            allItems[i].remove();
-        }
-        for (var i = 0; i < doneItems.length; i++) {
-            AddItemVisually(doneItems[i]);
-        }
-    }    
-    else {
-        for (var i = 0; i < allItems.length; i++) {
-            allItems[i].remove();
-        }
-        for (var i = 0; i < allItems.length; i++) {
-            AddItemVisually(allItems[i]);
-        }
+// check hash
+if ( location.hash === "#active" ) {
+    for (k = 0 ; k < doneItems.length; k++) {
+        doneItems[k].remove();
     }
+    var str = "[href=\"#active\"]";
+    var selected = document.querySelector(str);
+    selected.setAttribute("class", "selected");
+}
+else if ( location.hash === "#completed" ) {
+    for (k = 0 ; k < activeItems.length; k++) {
+        activeItems[k].remove();
+    }
+    var str = "[href=\"#completed\"]";
+    var selected = document.querySelector(str);
+    selected.setAttribute("class", "selected");
+}
+else if (location.hash === "" ) {
+    var str = "[href=\"#\"]";
+    var selected = document.querySelector(str);
+    selected.setAttribute("class", "selected");
+}
 
-}, false);
+
