@@ -95,7 +95,7 @@ button {
     float: left;
     text-align: left;
     color: #777777;
-    flex:1;
+    flex: initial;
 }/*item counter label, in bottom div */
 
 #links {
@@ -104,23 +104,24 @@ button {
     position:relative;
     height:70px;
     margin:-20px;
+    padding: 0px 18px 0px 18px;
+
 } /*a div that holds the 3 li´s inside in bottom div*/
 
 ul {
-    display: block;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
     list-style-type: disc;
     margin-block-start: 1em;
     margin-block-end: 1em;
     margin-inline-start: 0px;
     margin-inline-end: 0px;
-    padding-inline-start: 40px;
-    flex:2;    
-    
-    
+    padding-inline-start: 0px;
 }
 
 li {
-    float:left;
+    flex: initial;
     position: relative;
     display:block;
     color: #777777;
@@ -156,7 +157,7 @@ li a.selected {
     line-height: 20px;
     text-decoration: none;
     cursor: pointer;
-    flex:1;
+    flex: initial;
 }/*Clear completed button*/
 
 #clear:hover {

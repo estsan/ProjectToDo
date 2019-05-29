@@ -38,6 +38,7 @@ function UpdateItemsLeft() {
     TopRowButtonChange();
 }
 
+// To remove an item completely
 function RemoveItem(div) {
     allItems.splice(allItems.indexOf(div), 1);  
     sessionStorage.removeItem(div.children[0].getAttribute("id"));
@@ -55,6 +56,7 @@ function RemoveItem(div) {
     }
 }
 
+// Add an item to arrays and sessionStorage
 function AddItemToContext(thisLabel, active) {
     var div = document.createElement("div");
     div.setAttribute('class', "list-item");
@@ -233,6 +235,7 @@ clearCompleted.onclick = event => {
     }
 };
 
+// For when the hash changes
 window.addEventListener('hashchange', function() {
     var aLinks = document.querySelectorAll("a");
     for (k = 0; k < aLinks.length; k++){
