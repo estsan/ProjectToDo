@@ -96,7 +96,7 @@ function AddItemToContext(thisLabel, active) {
         var textbox = document.createElement("input");
         textbox.setAttribute("type", "textbox");
         textbox.setAttribute("class","editbox")
-        textbox.value = div.children[2].innerHTML;// from ;
+        textbox.value = div.children[1].innerHTML;// from ;
         label.replaceWith(textbox);
 
         textbox.addEventListener("keydown", function(e) {
