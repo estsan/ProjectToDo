@@ -311,21 +311,20 @@ footer{
         margin-top: -10px;
      }
 }
-<<<<<<< HEAD
+
+@media (max-width: 375px){
+  .main h1 {
+      font-size: 70px;
+  }
+}
+
 @media (max-width: 337px) {
     #bottom {
         height: 90px;
     }
-     li {
+    li {
         margin-top: -20px;
-     }
+    }
 }
-=======
-
-  @media (max-width: 375px){
-  .main h1 {
-      font-size: 70px;
-  }}
 
  
->>>>>>> master
