@@ -302,5 +302,6 @@ footer{
     body{
         overflow-x: hidden !important;
         zoom: 3; 
+        color: green;
     } 
 }
