@@ -153,7 +153,7 @@ function ChangeBetweenDoneAndNotDone(div) {
         value[0] = 'y';
         sessionStorage.setItem(key, JSON.stringify(value));
         lbl1.style.textDecoration = 'none';
-        lbl1.style.color = '#777777';
+        lbl1.style.color = '#4d4d4d';
         if ( location.hash === "#completed" ) {
             AddItemVisually(div);
         }
