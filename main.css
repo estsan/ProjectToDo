@@ -136,7 +136,6 @@ header{
     border: none;
     -webkit-appearance: none;
     outline: none;
-    border: none;
 }
 .list-item .circle-check:checked {
     background-image: url('data:image/svg+xml;utf8,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20width%3D%2240%22%20height%3D%2240%22%20viewBox%3D%22-10%20-18%20100%20135%22%3E%3Ccircle%20cx%3D%2250%22%20cy%3D%2250%22%20r%3D%2250%22%20fill%3D%22none%22%20stroke%3D%22%23bddad5%22%20stroke-width%3D%223%22/%3E%3Cpath%20fill%3D%22%235dc2af%22%20d%3D%22M72%2025L42%2071%2027%2056l-4%204%2020%2020%2034-52z%22/%3E%3C/svg%3E');
@@ -161,7 +160,6 @@ header{
     position: relative;
     left:40px;
     padding-left: 20px;
-    
 }/*when we double click to edit something existing*/
 
 .list-item:hover .delete-item {
@@ -206,7 +204,6 @@ header{
 }/*bottom div that holds: item counter, clear completed and the 3 li´s*/
 
 button {
-    border:none;
     margin: 0;
     padding: 0;
     border: 0;
@@ -260,13 +257,16 @@ li {
     padding:12px;
     text-decoration: none;
     font: normal normal 300 normal 14px / 19.6px "Helvetica Neue", Helvetica, Arial, sans-serif;
+
 }
+
 li a {
     display: block;
     color: #777777;
     text-align: center;
     text-decoration: none;
 }
+
 li a:hover {
     border: 1px solid rgba(175, 47, 47, 0.15);
     padding-left: 10px;
@@ -307,4 +307,15 @@ footer{
     #bottom {
         height: 60px;
     }
+     li {
+        margin-top: -10px;
+     }
+}
+@media (max-width: 337px) {
+    #bottom {
+        height: 90px;
+    }
+     li {
+        margin-top: -20px;
+     }
 }
