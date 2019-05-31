@@ -191,7 +191,6 @@ header{
 #bottom {
     color: #777;
     padding: 10px 15px;
-    height: 15px;
     text-align: center;
     background: #fff;
     display:flex;
@@ -299,9 +298,13 @@ footer{
 }
 
 @media (max-width: 480px) {
+    html {
+        width: 100%;
+    }
     body{
         overflow-x: hidden !important;
-        zoom: 3; 
-        color: green;
+        border: solid;
+        margin: 1rem;
+        width: 90%;
     } 
 }
